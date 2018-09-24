@@ -1,0 +1,30 @@
+<ion-content class="background">
+	<h1>EnglishPal</h1>
+	<br><br>
+	<ion-card>
+		<!-- title -->
+		<ion-card-header>
+			Login 
+		</ion-card-header>
+		<ion-card-content>		
+			<ion-list no-line>
+				<ion-item>
+					<ion-label floating>Email</ion-label>
+					<ion-input type="text" [(ngModel)]="user.email" ></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-label floating>Password</ion-label>
+					<ion-input type="password"  [(ngModel)]="user.password" ></ion-input>
+				</ion-item>
+				<a>Forgot your login detail? <b>Get help signing in</b></a>
+				<button ion-button block outline color="light" (click)="login(user)">Log in</button>
+				<button ion-button block outline color="danger" (click)="signUp()">Sign Up</button>
+				<p>OR</p>
+				<button ion-button block color="facebook">
+					<ion-icon name="logo-facebook"></ion-icon> Login with facebook
+				</button>
+			</ion-list>
+
+		</ion-card-content>
+	</ion-card>
+</ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "englishpal",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

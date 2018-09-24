@@ -1,0 +1,43 @@
+<ion-content class="background">
+
+	<br><br>
+	<ion-card>
+		<!-- title -->
+		<ion-card-header>
+			<h2 align="center">Sign Up</h2>
+		</ion-card-header>
+		<ion-card-content>		
+			<ion-list no-line>
+				<ion-item>
+					<ion-label floating>Email</ion-label>
+					<ion-input type="text" [(ngModel)]="user.email" ></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-label floating>Password</ion-label>
+					<ion-input type="password" [(ngModel)]="user.password" ></ion-input>
+        </ion-item>
+        <!--
+        <ion-item>
+            <ion-label floating>Full name</ion-label>
+            <ion-input type="text" [(ngModel)]="name" ></ion-input>
+          </ion-item>
+        
+        <br><br>
+        <ion-label >Type</ion-label>
+
+        <ion-list radio-group [(ngModel)]="type">
+        <ion-item>
+            <ion-label >Student</ion-label>
+            <ion-radio value="student" checked></ion-radio>
+        </ion-item>
+        <ion-item>
+            <ion-label >Mentor</ion-label>
+            <ion-radio value="mentor" checked></ion-radio>
+        </ion-item>-->
+				<button ion-button block outline color="primary" (click)="register(user)">Sign Up</button>
+			
+		<!--	</ion-list> -->
+    </ion-list>
+		</ion-card-content>
+	</ion-card>
+</ion-content>
