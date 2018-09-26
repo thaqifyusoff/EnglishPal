@@ -32,20 +32,16 @@ export class LoginPage {
   async login(user: User)
   {
     try{
-      const result = this.afAuth.auth.signInWithEmailAndPassword(user.email,user.password);
-      if (result){
-        this.navCtrl.setRoot("ProfilePage");
-       }
-      else{
-        let alert = this.alertCtrl.create({
-          title: 'Login unsucessful',
-          subTitle: 'Username or Password is incorrect',
-          buttons: ['Dismiss']
-        });
-        alert.present();
-        this.navCtrl.setRoot("LoginPage");
-      }
-    }
+      const result=this.afAuth.auth.signInWithEmailAndPassword(user.email,user.password);
+      if(result){
+      this.afAuth.authState.take(1).subscribe(auth => {
+        if(!auth.uid){
+          this.navCtrl.setRoot("HomePage");
+        }
+        else{this.navCtrl.setRoot('HomePage')
+        }
+      })
+      }}
       catch (e){
         let alert = this.alertCtrl.create({
           title: 'Login unsucessful',

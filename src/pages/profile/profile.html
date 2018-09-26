@@ -7,12 +7,47 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>profile</ion-title>
+    <ion-title>Welcome</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
+
+
 <ion-content padding>
+
+  <ion-list no-line>
+      <ion-item>
+          <ion-label floating>Username</ion-label>
+          <ion-input type="text" [(ngModel)]="profile.username" ></ion-input>
+      </ion-item>
+    <ion-item>
+      <ion-label floating>Full Name</ion-label>
+      <ion-input type="text" [(ngModel)]="profile.fullname" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Phone Number</ion-label>
+      <ion-input type="text" [(ngModel)]="profile.phonenumber" ></ion-input>
+    </ion-item>
+  
+
+          
+  <br><br>
+  <ion-label >Type</ion-label>
+
+  <ion-list radio-group [(ngModel)]="profile.type">
+  <ion-item>
+      <ion-label >Student</ion-label>
+      <ion-radio value="student" checked></ion-radio>
+  </ion-item>
+  <ion-item>
+      <ion-label >Mentor</ion-label>
+      <ion-radio value="mentor" checked></ion-radio>
+  </ion-item>
+  </ion-list>
+  </ion-list>
+
+  <button ion-button clear block (click)="createProfile()">Create</button>
 
 </ion-content>

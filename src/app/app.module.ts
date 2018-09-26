@@ -8,10 +8,14 @@ import { HttpModule } from '@angular/http';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 import { FormsModule } from '@angular/forms'; //NG MODEL
-import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
 
 import { MyApp } from './app.component';
+
+//PROVIDER
 import { FirebaseServiceProvider } from '../providers/firebase-service';
+import { ProfileProvider } from '../providers/profile/profile';
+import { UserProvider } from '../providers/user/user';
 
 //FIREBASE CONFIG 
 var firebaseConfig = {
@@ -51,6 +55,8 @@ var firebaseConfig = {
   
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FirebaseServiceProvider,
+    ProfileProvider,
+    UserProvider,
 
   ]
 })
