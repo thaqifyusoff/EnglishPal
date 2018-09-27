@@ -4,7 +4,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase, AngularFireObject, AngularFireList } from '@angular/fire/database';
 import { Profile } from './../../models/profile';
 import { Observable } from 'rxjs';
-
+import {FirebaseObjectObservable} from '@angular/fire/database-deprecated';
 
 /**
  * Generated class for the HomePage page.
@@ -19,32 +19,26 @@ import { Observable } from 'rxjs';
   templateUrl: 'home.html',
 })
 export class HomePage {
-
+   public p : FirebaseObjectObservable<Profile>;
    profileData :AngularFireObject<Profile> ;
    profile ={} as Profile;
    profileData$: AngularFireList<any[]>;
+   name : string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public afAuth: AngularFireAuth , private afDatabase: AngularFireDatabase, public toast:ToastController) {
+    this.p = this.afDatabase.object.apply(`profile/${name}`);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
-    this.afAuth.authState.take(1).subscribe(data => {
-      if(data && data.email && data.uid ){
-        this.toast.create({
-          message: `Welcome to APP_NAME,{data.email}`,
-          duration:3000
-        }).present();  
-        this.profileData$ = this.afDatabase.list(`profile/${data.uid}`);
-       
+    this.afAuth.authState.take(1).subscribe(user => {
+      if(user.uid ){
+        this.name = user.uid;
+        this.p = this.afDatabase.object.apply(`profile/${user.uid}`);
+        localStorage.setItem('person', JSON.stringify(this.p));
+      }
         
-      }
-      else{
-        this.toast.create({
-          message:`Could not find authentication details.`,
-          duration: 3000
-        }).present();
-      }
+   
     })
   }
 
