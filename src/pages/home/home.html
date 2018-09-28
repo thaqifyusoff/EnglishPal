@@ -7,6 +7,7 @@
 <ion-header>
 
   <ion-navbar>
+    <button (click)="logout()">Logout</button>
     <ion-title>home</ion-title>
   </ion-navbar>
 
@@ -16,8 +17,13 @@
 <ion-content padding>
   <ion-list>
     
-    <ion-label>Username : </ion-label><ion-label>{{p.fullname}} </ion-label>
-
+    <ion-label>Username : </ion-label><ion-label>{{u}}111</ion-label>
+    <ion-label>{{profile.username}}</ion-label><br>
+    <ion-label>{{profile.fullname}}</ion-label><br>
+    <ion-label>{{profile.level}}</ion-label><br>
+    <ion-label>{{profile.phonenumber}}</ion-label><br>
+    <ion-label>{{profile.type}}</ion-label><br>
+  
   </ion-list>
  
 

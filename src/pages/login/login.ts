@@ -35,10 +35,12 @@ export class LoginPage {
       const result=this.afAuth.auth.signInWithEmailAndPassword(user.email,user.password);
       if(result){
       this.afAuth.authState.take(1).subscribe(auth => {
-        if(!auth.uid){
+        if(auth){
           this.navCtrl.setRoot("HomePage");
+           localStorage.setItem('userid',auth.uid );
+
         }
-        else{this.navCtrl.setRoot('HomePage')
+        else{this.navCtrl.setRoot('LoginPage')
         }
       })
       }}
