@@ -5,6 +5,8 @@ import { FirebaseServiceProvider } from '../../providers/firebase-service';
 import { AngularFireAuth} from '@angular/fire/auth';
 import { User } from '../../models/user';
 import { AlertController } from 'ionic-angular';
+import { AngularFireDatabase } from '@angular/fire/database';
+import {Profile} from './../../models/profile';
 
 
 /**
@@ -21,20 +23,21 @@ import { AlertController } from 'ionic-angular';
   providers: [AngularFireAuth] //PROVIDER ANGULARFIRE AUTH
 })
 export class RegisterPage {
- 
+  
+  profile = ({ 
+    level:1,
+    ft:1,
+   }) as Profile;
+
   user= {} as User;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public firebaseService:FirebaseServiceProvider , public afAuth:AngularFireAuth,private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public firebaseService:FirebaseServiceProvider 
+    , public afDatabase: AngularFireDatabase,public afAuth:AngularFireAuth,private alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterPage');
   }
 
-  //TO ADD TO FIREBASE
-  addUser(email,password,name,type){
-    this.firebaseService.addUser(email,password,name,type);
-  }
-  //CLOSE
 
   async register(user: User){
     try{
@@ -46,7 +49,12 @@ export class RegisterPage {
         buttons: ['Dismiss']
       });
       alert.present();
-      this.navCtrl.push("LoginPage");
+      this.afAuth.authState.take(1).subscribe(auth => {
+        this.afDatabase.object(`profile/${auth.uid}`).set(this.profile)
+        .then(() =>  this.navCtrl.push("LoginPage"))
+        ;
+      })
+     
     }
     }
     catch(e){

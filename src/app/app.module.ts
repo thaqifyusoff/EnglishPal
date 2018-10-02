@@ -6,11 +6,11 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { AngularFireModule } from '@angular/fire';
 import { HttpModule } from '@angular/http';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-
 import { FormsModule } from '@angular/forms'; //NG MODEL
 import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
 
 import { MyApp } from './app.component';
+//MODULE
 
 //PROVIDER
 import { FirebaseServiceProvider } from '../providers/firebase-service';
@@ -41,6 +41,7 @@ var firebaseConfig = {
     FormsModule,
     AngularFireModule.initializeApp(firebaseConfig), //firebase
     AngularFireAuthModule,
+
   
 
   ],
@@ -53,7 +54,7 @@ var firebaseConfig = {
     StatusBar,
     SplashScreen,
   
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    {provide: ErrorHandler, useClass: IonicErrorHandler}, //DELETE TO TURN OFF ERROR HANDLER
     FirebaseServiceProvider,
     ProfileProvider,
     UserProvider,

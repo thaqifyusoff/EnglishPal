@@ -3,6 +3,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { User } from "../../models/user";
 import { AngularFireAuth} from '@angular/fire/auth';
 import { AlertController } from 'ionic-angular';
+import { Profile } from './../../models/profile';
+import { Observable } from 'rxjs';
+import { AngularFireDatabase, AngularFireObject, AngularFireList} from '@angular/fire/database';
 
 /**
  * Generated class for the ProfilePage page.
@@ -19,10 +22,11 @@ import { AlertController } from 'ionic-angular';
 
 })
 export class LoginPage {
-
+  profile ={} as Profile;
+  pro : Observable<Profile>;
   user ={} as User;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private afAuth: AngularFireAuth,private alertCtrl: AlertController ) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private afAuth: AngularFireAuth,private alertCtrl: AlertController,private afDatabase: AngularFireDatabase ) {
   }
 
   ionViewDidLoad() {
@@ -31,29 +35,33 @@ export class LoginPage {
   
   async login(user: User)
   {
-    try{
+    
       const result=this.afAuth.auth.signInWithEmailAndPassword(user.email,user.password);
       if(result){
       this.afAuth.authState.take(1).subscribe(auth => {
         if(auth){
-          this.navCtrl.setRoot("HomePage");
            localStorage.setItem('userid',auth.uid );
+           this.pro = this.afDatabase.object<Profile>('profile/'+auth.uid).valueChanges();
+           this.pro.subscribe (p =>{
+              if(p.ft ==1){
+                this.navCtrl.setRoot("ProfilePage"); // IF USER FIRST TIME
+              }
+           })
+           this.navCtrl.setRoot("DashboardStudentPage");
 
         }
-        else{this.navCtrl.setRoot('LoginPage')
+        else{
+          let alert = this.alertCtrl.create({
+            title: 'Login unsucessful',
+            subTitle: 'Username or Password is incorrect',
+            buttons: ['Dismiss']
+          });
+          alert.present();
+          this.navCtrl.setRoot('LoginPage')
         }
       })
-      }}
-      catch (e){
-        let alert = this.alertCtrl.create({
-          title: 'Login unsucessful',
-          subTitle: 'Username or Password is incorrect',
-          buttons: ['Dismiss']
-        });
-        alert.present();
-        this.navCtrl.setRoot("LoginPage");
       }
-    
+     
    
    
 

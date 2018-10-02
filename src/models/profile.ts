@@ -4,6 +4,7 @@ export interface Profile {
     phonenumber: string;
     type: string;
     level: number;
+    ft : number; //FIRST TIME
 
 
 
