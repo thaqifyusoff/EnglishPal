@@ -34,7 +34,7 @@ export class HomePage {
         this.profile.username = user.username;
         this.profile.fullname = user.fullname;
         this.profile.level = user.level;
-        this.profile.phonenumber = user.phonenumber;
+        this.profile.email = user.email;
         this.profile.type = user.type;
 
     } );

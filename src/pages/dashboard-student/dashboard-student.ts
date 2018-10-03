@@ -14,10 +14,10 @@ import { AngularFireAuth } from '@angular/fire/auth';
   templateUrl: 'dashboard-student.html',
 })
 export class DashboardStudentPage {
-
+  @ViewChild(Nav) nav: Nav;
   pages: Array<{title:string,component:string,openTab?:any}>;
   rootPage = 'HomePage';
-  constructor(public navCtrl: NavController, public navParams: NavParams,public afAuth: AngularFireAuth) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public afAuth: AngularFireAuth,) {
     this.pages = [
       {title:'Profile',component:'HomePage'},
       {title:'Progress',component:'HomePage'},
@@ -29,7 +29,7 @@ export class DashboardStudentPage {
   }
 
   openPage(page){
-    this.navCtrl.setRoot(page.component)
+    this.nav.setRoot(page.component)
   }
 
   ionViewDidLoad() {

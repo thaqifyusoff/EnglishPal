@@ -41,6 +41,7 @@ export class LoginPage {
       this.afAuth.authState.take(1).subscribe(auth => {
         if(auth){
            localStorage.setItem('userid',auth.uid );
+           localStorage.setItem('userEmail',auth.email );
            this.pro = this.afDatabase.object<Profile>('profile/'+auth.uid).valueChanges();
            this.pro.subscribe (p =>{
               if(p.ft ==1){
