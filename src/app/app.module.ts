@@ -16,6 +16,7 @@ import { MyApp } from './app.component';
 import { FirebaseServiceProvider } from '../providers/firebase-service';
 import { ProfileProvider } from '../providers/profile/profile';
 import { UserProvider } from '../providers/user/user';
+import { ExerciseServiceProvider } from '../providers/exercise-service/exercise-service';
 
 //FIREBASE CONFIG 
 var firebaseConfig = {
@@ -58,6 +59,7 @@ var firebaseConfig = {
     FirebaseServiceProvider,
     ProfileProvider,
     UserProvider,
+    ExerciseServiceProvider,
 
   ]
 })

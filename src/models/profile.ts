@@ -6,7 +6,4 @@ export interface Profile {
     level: number;
     ft : number; //FIRST TIME
 
-
-
-
 }

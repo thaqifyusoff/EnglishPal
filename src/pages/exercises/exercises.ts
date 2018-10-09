@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams,Nav } from 'ionic-angular';
 import { ExerciseFlashcardPage } from '../exercise-flashcard/exercise-flashcard';
 
 /**
@@ -15,8 +15,10 @@ import { ExerciseFlashcardPage } from '../exercise-flashcard/exercise-flashcard'
   templateUrl: 'exercises.html',
 })
 export class ExercisesPage {
-
+  @ViewChild(Nav)nav:Nav;
+  
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    
   }
 
   ionViewDidLoad() {
@@ -24,7 +26,6 @@ export class ExercisesPage {
   }
 
   public navigateTo(text : string){
-    console.log(text);
     this.navCtrl.push("ExerciseFlashcardPage", {
       data:text,
 
