@@ -12,16 +12,51 @@
 
 </ion-header>
 
+<ion-content padding class="background">
+  <br><br>
+  <ion-card>
+    <ion-card-content *ngFor="let item of questions | async; let i = index;" [ngClass]="(i === currentQuestion) ? '': 'hide'">
+      <div padding></div>
+      <ion-item > 
+        <ion-label text-wrap>{{item.question}} </ion-label>
+      </ion-item>
+      <div padding></div>
+      <ion-list radio-group [(ngModel)]="answer.answered" >
+        <ion-item>
+          <ion-label>A. {{item.a}}</ion-label>
+          <ion-radio item-left value="{{item.a}}" checked></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>B. {{item.b}}</ion-label>
+          <ion-radio item-left value="{{item.b}}" checked></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>C. {{item.c}}</ion-label>
+          <ion-radio item-left value="{{item.c}}" checked></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>D. {{item.d}}</ion-label>
+          <ion-radio item-left value="{{item.d}}" checked></ion-radio>
+        </ion-item>
+      </ion-list>
+      <ion-input type="hidden" [(ngModel)]="answer.real" value="{{item.answer}}" ></ion-input>
+      <div padding></div> 
+      <ion-grid style="text-align: center">
+        <ion-row>
+          <ion-col>
+                  <button ion-button  block outline color="danger" (click)="check()">Check</button>
+          </ion-col>
+          <ion-col>
+              <button ion-button block  outline (click)="submitCurrentQuestion()">Next</button>
+          </ion-col>      
+        </ion-row>
+          
+      </ion-grid>
+     
 
-<ion-content padding>
-<ion-list>
-    <ion-item *ngFor="let item of questions | async; let i = index;"
-    [ngClass]="(i === currentQuestion) ? '': 'hide'">
-      {{item.question}}
-      <button (click)="submitCurrentQuestion()" class="btn btn-primary">Submit</button>
-    </ion-item>
-</ion-list>
 
 
 
+    </ion-card-content>
+  </ion-card>
 </ion-content>

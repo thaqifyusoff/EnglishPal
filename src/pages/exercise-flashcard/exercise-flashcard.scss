@@ -1,9 +1,16 @@
 page-exercise-flashcard {
-    p {
-        font-family: Lato;
-      }
-      
-      .hide {
-        display: none;
-      }
+
+
+  ion-card.card {
+    box-shadow: none;
+    background: rgb(252, 252, 252);
+    border-radius: 20px;
+    height:80%;
+ 
+  }
+
+  
+  .label{
+    font-size:20px;
+  }
 }

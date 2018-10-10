@@ -4,6 +4,8 @@ import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { FirebaseListObservable } from '@angular/fire/database-deprecated';
 import { Exercise } from './../../models/exercise'
 import { Observable } from 'rxjs';
+import { Answer } from './../../models/answer';
+import { ChangeDetectorRef } from '@angular/core';
 
 /**
  * Generated class for the ExerciseFlashcardPage page.
@@ -22,10 +24,12 @@ export class ExerciseFlashcardPage {
   exercise: Exercise[] = [];
   questions: Observable<any>;
   type: string;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public afd: AngularFireDatabase) {
+  answer = {} as Answer;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public afd: AngularFireDatabase,private cdRef:ChangeDetectorRef) {
     this.type = this.navParams.get('data');
     let i = 0;
     this.questions = this.afd.list('exercises/' + this.type).valueChanges();
+  
 
     //FOR ACCESS INSIDE DATA
     /* this.questions.subscribe(e => {
@@ -41,9 +45,25 @@ export class ExerciseFlashcardPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ExerciseFlashcardPage');
   }
+  //detect any changes since use hidden
+  ngAfterViewChecked()
+  {
+  this.cdRef.detectChanges();
+  }
+
   submitCurrentQuestion() {
     // Make changes to save the answer
 
     ++this.currentQuestion;
+  }
+  check(){
+    console.log(this.answer.answered)
+    console.log(this.answer.real)
+    if(this.answer.answered ==this.answer.real){
+      console.log("correct")
+    }    
+    else{
+      console.log("wrong")
+    }
   }
 }
