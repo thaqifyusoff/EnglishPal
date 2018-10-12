@@ -3,6 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 import { DashboardStudentPage } from './dashboard-student';
 import {HomePageModule} from './../home/home.module';
 import {ExercisesPageModule} from './../exercises/exercises.module';
+import {LearningPageModule} from './../learning/learning.module';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import {ExercisesPageModule} from './../exercises/exercises.module';
     IonicPageModule.forChild(DashboardStudentPage),
     HomePageModule,
     ExercisesPageModule,
+
   ],
 })
 export class DashboardStudentPageModule {}

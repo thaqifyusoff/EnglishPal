@@ -54,7 +54,6 @@ var firebaseConfig = {
   providers: [
     StatusBar,
     SplashScreen,
-  
     {provide: ErrorHandler, useClass: IonicErrorHandler}, //DELETE TO TURN OFF ERROR HANDLER
     FirebaseServiceProvider,
     ProfileProvider,
