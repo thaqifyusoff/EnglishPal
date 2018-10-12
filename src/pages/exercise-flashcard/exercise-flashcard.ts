@@ -6,6 +6,7 @@ import { Exercise } from './../../models/exercise'
 import { Observable } from 'rxjs';
 import { Answer } from './../../models/answer';
 import { ChangeDetectorRef } from '@angular/core';
+import {AnswerMssg} from './../../models/answermssg';
 
 /**
  * Generated class for the ExerciseFlashcardPage page.
@@ -25,9 +26,10 @@ export class ExerciseFlashcardPage {
   questions: Observable<any>;
   type: string;
   answer = {} as Answer;
+  mssg = {} as AnswerMssg;
+  isValid = false;
   constructor(public navCtrl: NavController, public navParams: NavParams, public afd: AngularFireDatabase,private cdRef:ChangeDetectorRef) {
     this.type = this.navParams.get('data');
-    let i = 0;
     this.questions = this.afd.list('exercises/' + this.type).valueChanges();
   
 
@@ -43,27 +45,26 @@ export class ExerciseFlashcardPage {
   }
 
   ionViewDidLoad() {
+
     console.log('ionViewDidLoad ExerciseFlashcardPage');
   }
   //detect any changes since use hidden
-  ngAfterViewChecked()
-  {
-  this.cdRef.detectChanges();
-  }
-
   submitCurrentQuestion() {
     // Make changes to save the answer
-
+    this.isValid= false;
     ++this.currentQuestion;
   }
-  check(){
-    console.log(this.answer.answered)
-    console.log(this.answer.real)
-    if(this.answer.answered ==this.answer.real){
-      console.log("correct")
+  check(ans : any){
+    this.isValid = true;
+    if(this.answer.answered ==ans){
+      this.mssg.status = "Correct"
+      this.mssg.answer = ans;
+      this.mssg.icon = "checkmark-circle-outline";
     }    
     else{
-      console.log("wrong")
+      this.mssg.status = "Wrong"
+      this.mssg.answer = ans ;
+      this.mssg.icon = "close-circle-outline";
     }
   }
 }

@@ -13,15 +13,13 @@
 </ion-header>
 
 <ion-content padding class="background">
-  <br><br>
+  
   <ion-card>
-    <ion-card-content *ngFor="let item of questions | async; let i = index;" [ngClass]="(i === currentQuestion) ? '': 'hide'">
-      <div padding></div>
-      <ion-item > 
+    <ion-card-content padding *ngFor="let item of questions | async; let i = index;" [ngClass]="(i === currentQuestion) ? '': 'hide'">
+      <ion-item padding > 
         <ion-label text-wrap>{{item.question}} </ion-label>
       </ion-item>
-      <div padding></div>
-      <ion-list radio-group [(ngModel)]="answer.answered" >
+      <ion-list radio-group [(ngModel)]="answer.answered" padding >
         <ion-item>
           <ion-label>A. {{item.a}}</ion-label>
           <ion-radio item-left value="{{item.a}}" checked></ion-radio>
@@ -38,25 +36,36 @@
           <ion-label>D. {{item.d}}</ion-label>
           <ion-radio item-left value="{{item.d}}" checked></ion-radio>
         </ion-item>
-      </ion-list>
-      <ion-input type="hidden" [(ngModel)]="answer.real" value="{{item.answer}}" ></ion-input>
-      <div padding></div> 
+          </ion-list>
+        <div *ngIf="isValid" >
+   
+
+        <ion-row>
+          <ion-col style=" text-align:left">
+            <div [ngClass]="{'color-green': mssg.status === 'Correct', 'color-red': mssg.status ==='Wrong'}">
+              {{mssg.status}}     <ion-icon name={{mssg.icon}}></ion-icon>
+
+
+            </div>
+          </ion-col>
+        </ion-row> 
+        <ion-row>
+            <ion-col style=" text-align:left">
+              Answer : {{mssg.answer}}
+            </ion-col>
+          </ion-row> 
+             </div>
       <ion-grid style="text-align: center">
         <ion-row>
           <ion-col>
-                  <button ion-button  block outline color="danger" (click)="check()">Check</button>
+                  <button ion-button  block outline color="danger" (click)="check(item.answer)">Check</button>
           </ion-col>
           <ion-col>
               <button ion-button block  outline (click)="submitCurrentQuestion()">Next</button>
           </ion-col>      
         </ion-row>
-          
+ 
       </ion-grid>
-     
-
-
-
-
     </ion-card-content>
   </ion-card>
 </ion-content>
