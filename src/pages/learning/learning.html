@@ -14,17 +14,16 @@
   <ion-list class="accordion-list">
  
     <!-- First Level -->
-    <ion-list-header *ngFor="let item of information; let i = index" no-lines no-padding>
+    <ion-list *ngFor="let item of information; let i = index" no-lines no-padding>
       <!-- Toggle Button -->
       <button ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-active': item.open, 'section': !item.open}">
         <ion-icon item-left name="arrow-forward" *ngIf="!item.open"></ion-icon>
         <ion-icon item-left name="arrow-down" *ngIf="item.open"></ion-icon>
         {{ item.name }}
       </button>
- 
       <ion-list *ngIf="item.children && item.open" no-lines>
         <!-- Second Level -->
-        <ion-list-header *ngFor="let child of item.children; let j = index" no-padding>
+        <ion-list *ngFor="let child of item.children; let j = index" no-padding>
           <!-- Toggle Button -->
           <button ion-item (click)="toggleItem(i, j)" *ngIf="child.children" class="child" detail-none>
             <ion-icon item-left name="add" *ngIf="!child.open"></ion-icon>
@@ -42,14 +41,14 @@
             <ion-item *ngFor="let item of child.children; let k = index" detail-none class="child-item" text-wrap>
               <p class="lowercase" >{{ item.information }}</p><br>
               <!-- Direct Add Button -->
-              <div style="text-transform:capitalize">Example</div><p class="lowercase" >{{ item.example }}</p>
+              Example<p class="lowercase" >{{ item.example }}</p>
             </ion-item>
           </ion-list>
  
-        </ion-list-header>
+        </ion-list>
       </ion-list>
       
-    </ion-list-header>
+    </ion-list>
   </ion-list>
     </ion-card>
 </ion-content>
