@@ -15,7 +15,7 @@
 <ion-content padding class="background">
   
   <ion-card>
-    <ion-card-content padding *ngFor="let item of questions | async; let i = index;" [ngClass]="(i === currentQuestion) ? '': 'hide'">
+    <ion-card-content padding *ngFor="let item of questions | async; let i = index; let last=last;" [ngClass]="(i === currentQuestion) ? '': 'hide'" >
       <ion-item padding > 
         <ion-label text-wrap>{{item.question}} </ion-label>
       </ion-item>
@@ -56,12 +56,12 @@
           </ion-row> 
              </div>
       <ion-grid style="text-align: center">
-        <ion-row>
+      <ion-row>
           <ion-col>
                   <button ion-button  block outline color="danger" (click)="check(item.answer)">Check</button>
           </ion-col>
           <ion-col>
-              <button ion-button block  outline (click)="submitCurrentQuestion()">Next</button>
+              <button ion-button block  outline (click)="next(last)">Next</button>
           </ion-col>      
         </ion-row>
  

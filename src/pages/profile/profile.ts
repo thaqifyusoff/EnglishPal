@@ -4,7 +4,7 @@ import { AngularFireAuth} from '@angular/fire/auth';
 import { Profile } from './../../models/profile';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AlertController } from 'ionic-angular';
-
+import {storage,initializeApp} from 'firebase';
 /**
  * Generated class for the ProfilePage page.
  *

@@ -1,0 +1,19 @@
+page-tests {
+    $linkcolour: #534a4a;
+    $linkcolour: #fdfdfd;
+
+    .b1 {
+        background-color: lighten($linkcolour, 40%);
+      }
+      
+    .b2 {
+        background-color: lighten($linkcolour, 30%);
+      }
+      .b3 {
+        background-color: lighten($linkcolour, 20%);
+      }
+      .b4 {
+        background-color: $linkcolour;
+      }
+
+}

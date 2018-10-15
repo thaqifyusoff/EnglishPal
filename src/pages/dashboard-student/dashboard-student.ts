@@ -23,6 +23,8 @@ export class DashboardStudentPage {
       {title:'Progress',component:'HomePage'},
       {title:'Learning',component:'LearningPage'},
       {title:'Exercises',component:'ExercisesPage'},
+      {title:'Tests',component:'TestsPage'},
+
 
     ];
   }

@@ -19,7 +19,7 @@
       <button ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-active': item.open, 'section': !item.open}">
         <ion-icon item-left name="arrow-forward" *ngIf="!item.open"></ion-icon>
         <ion-icon item-left name="arrow-down" *ngIf="item.open"></ion-icon>
-        {{ item.name }}
+        <b>{{ item.name }}</b>
       </button>
       <ion-list *ngIf="item.children && item.open" no-lines>
         <!-- Second Level -->
@@ -28,7 +28,7 @@
           <button ion-item (click)="toggleItem(i, j)" *ngIf="child.children" class="child" detail-none>
             <ion-icon item-left name="add" *ngIf="!child.open"></ion-icon>
             <ion-icon item-left name="close" *ngIf="child.open"></ion-icon>
-            {{ child.name }}
+            <b>{{ child.name }}</b>
           </button>
           <!-- Direct Add Button as Fallback -->
           <ion-item *ngIf="!child.children" ion-item detail-none class="child-item" text-wrap no-lines>
