@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
-import { Exercise } from './../../models/exercise'
 import { Observable } from 'rxjs';
 import { Answer } from './../../models/answer';
 import { ChangeDetectorRef } from '@angular/core';
@@ -14,7 +13,6 @@ import {AnswerMssg} from './../../models/answermssg';
 })
 export class ExerciseFlashcardPage {
   currentQuestion = 0;
-  exercise: Exercise[] = [];
   questions: Observable<any>;
   type: string;
   answer = {} as Answer;

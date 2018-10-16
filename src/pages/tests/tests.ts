@@ -66,15 +66,12 @@ export class TestsPage {
 
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TestsPage');
-    console.log("this.lvl");
-  
-    
-  }
+  ionViewDidLoad() { }
 
-  submit(){
-    console.log(this.lvl);
+  doTest(lvl :string){
+    this.navCtrl.push("TestFlashcardPage", {
+      level:lvl,
+    });
   }
 
 }

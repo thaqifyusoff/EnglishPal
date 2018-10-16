@@ -18,6 +18,7 @@ import { ProfileProvider } from '../providers/profile/profile';
 import { UserProvider } from '../providers/user/user';
 import { ExerciseServiceProvider } from '../providers/exercise-service/exercise-service';
 
+
 //FIREBASE CONFIG 
 var firebaseConfig = {
     apiKey: "AIzaSyCG2G6q8qc89S95hdPRXiutrbjF4DmIS7o",

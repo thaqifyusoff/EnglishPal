@@ -1,4 +1,4 @@
-export interface Exercise {
+export interface Question {
     question: string;
     answer: string;
     a: string;
