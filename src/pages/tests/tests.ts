@@ -69,9 +69,8 @@ export class TestsPage {
   ionViewDidLoad() { }
 
   doTest(lvl :string){
-    this.navCtrl.push("TestFlashcardPage", {
-      level:lvl,
-    });
+    localStorage.setItem("level",lvl);
+    this.navCtrl.setRoot("TestFlashcardPage");
   }
 
 }

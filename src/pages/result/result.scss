@@ -1,3 +1,33 @@
 page-result {
+    ion-card.card {
+        box-shadow: none;
+        background: rgb(255, 252, 252);
+        border-radius: 20px;
+        height:90%;
+     
+      }
+      .label{
+        font-size:20px;
+      }
+    
+      .color-green {
+        color: green;
+      }
+      .color-red {
+        color: red;
+      }
+      .my-label {
+        font-size: 2em;
+      }
+      .my-score {
+        font-size: 3em;
+      }
 
+      .pass{
+        color : green;
+      }
+
+      .fail{
+        color : red;
+      }
 }

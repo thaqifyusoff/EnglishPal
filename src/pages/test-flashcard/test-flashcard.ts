@@ -26,8 +26,7 @@ export class TestFlashcardPage {
   qnProgress: number=0 ;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public afd: AngularFireDatabase,private cdRef:ChangeDetectorRef) {
-    this.type = this.navParams.get('level');
-    console.log(this.type);
+    this.type = localStorage.getItem('level');
     this.questions = this.afd.list('tests/'+this.type).valueChanges();
     //ADD ON 
     this.questions.subscribe(
@@ -42,6 +41,7 @@ export class TestFlashcardPage {
   startTimer(){
     this.timer = setInterval(()=>{
       this.seconds++;
+      localStorage.setItem('timetaken',this.seconds.toString());
     },1000);
   }
   displayTimeElapsed(){
@@ -55,7 +55,9 @@ export class TestFlashcardPage {
     this.qnProgress++;
     if(last==true){
       this.currentQuestion = 0;
-      this.navCtrl.push("ResultPage");
+      localStorage.setItem('answered',JSON.stringify(this.qns));
+     
+      this.navCtrl.setRoot("ResultPage");
     }
     else{
       ++this.currentQuestion;
