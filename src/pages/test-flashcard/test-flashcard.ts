@@ -56,7 +56,7 @@ export class TestFlashcardPage {
     if(last==true){
       this.currentQuestion = 0;
       localStorage.setItem('answered',JSON.stringify(this.qns));
-     
+      localStorage.setItem('timetaken',this.seconds.toString());
       this.navCtrl.setRoot("ResultPage");
     }
     else{
