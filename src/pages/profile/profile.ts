@@ -22,7 +22,6 @@ export class ProfilePage {
   profile = ({ 
     level:1,
     ft:2,
-    email : localStorage.getItem("userEmail"),
    }) as Profile;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public afAuth: AngularFireAuth,private alertCtrl: AlertController, public afDatabase: AngularFireDatabase) {

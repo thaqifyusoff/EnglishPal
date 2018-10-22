@@ -11,6 +11,7 @@ import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
 
 import { MyApp } from './app.component';
 //MODULE
+import { ChartsModule } from 'ng2-charts';
 
 //PROVIDER
 import { FirebaseServiceProvider } from '../providers/firebase-service';
@@ -43,6 +44,7 @@ var firebaseConfig = {
     FormsModule,
     AngularFireModule.initializeApp(firebaseConfig), //firebase
     AngularFireAuthModule,
+    ChartsModule // chart
 
   
 

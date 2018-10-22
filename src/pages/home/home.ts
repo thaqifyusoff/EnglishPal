@@ -4,6 +4,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase} from '@angular/fire/database';
 import { Profile } from './../../models/profile';
 import { Observable } from 'rxjs';
+import { User } from '../../models/user';
 
 /**
  * Generated class for the HomePage page.
@@ -20,33 +21,31 @@ import { Observable } from 'rxjs';
 export class HomePage {
    profile ={} as Profile;
    pro : Observable<Profile>;
-
-   u1: string;
+   user= {} as User;
+   u: string;
   
-  get u() : any{
-    return localStorage.getItem('userid');
-  }
-
-  constructor( private afDatabase: AngularFireDatabase) {
-    this.u1=this.u;
-    this.pro = this.afDatabase.object<Profile>('profile/'+this.u1).valueChanges();
+  constructor( private afDatabase: AngularFireDatabase,public navCtrl: NavController,public afAuth:AngularFireAuth) {
+    this.u=localStorage.getItem('userid');
+    this.pro = this.afDatabase.object<Profile>('profile/'+this.u).valueChanges();
     this.pro.subscribe(user => {
         this.profile.username = user.username;
         this.profile.fullname = user.fullname;
         this.profile.level = user.level;
-        this.profile.email = user.email;
         this.profile.type = user.type;
 
     } );
+    this.afAuth.authState.take(1).subscribe(auth => {
+    this.user.email=auth.email;        
+    })
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
-    this.pro = this.afDatabase.object<Profile>('profile/'+this.u1).valueChanges();
-    
-                    }
-
-
+  ionViewDidLoad() {                    }
   
+ editProfile(){
+   this.navCtrl.push("EditPage");
+ }
 
+ editAccount(){
+   this.navCtrl.push("EditAccountPage");
+ }
 }

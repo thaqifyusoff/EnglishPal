@@ -20,7 +20,7 @@ export class DashboardStudentPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,public afAuth: AngularFireAuth,) {
     this.pages = [
       {title:'Profile',component:'HomePage'},
-      {title:'Progress',component:'HomePage'},
+      {title:'Progress',component:'ProgressPage'},
       {title:'Learning',component:'LearningPage'},
       {title:'Exercises',component:'ExercisesPage'},
       {title:'Tests',component:'TestsPage'},
