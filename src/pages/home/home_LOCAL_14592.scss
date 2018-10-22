@@ -19,15 +19,17 @@ page-home{
 	ion-card-header.card-header {
 		color: #fff!important;
 	}
-	.label{
-        font-size:18px;
-      }
+	
 
+	.list > .item-block:first-child {
+		border: medium none;
+	}
 
 	.item {
-		
+		margin-bottom: 10px;
 		background: rgba(255, 255, 255, 0.5);
-		
+		border: medium none;
+
 		.text-input, {
 			color: #fff;
 		}
@@ -57,16 +59,10 @@ page-home{
 	.icon {
 		padding-right: 10px;
 	}
-	.myphoto{
-		text-align: center;
-		margin-bottom: 10px;
-		img{	
-			height: auto;
-			width: auto;
-		  }
-	
-		}
 
+	
+
+	
 	h1	{
 		color:#fff;
 		font-size: 3em;

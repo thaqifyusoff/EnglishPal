@@ -16,6 +16,8 @@ import { MyApp } from './app.component';
 import { FirebaseServiceProvider } from '../providers/firebase-service';
 import { ProfileProvider } from '../providers/profile/profile';
 import { UserProvider } from '../providers/user/user';
+import { ExerciseServiceProvider } from '../providers/exercise-service/exercise-service';
+
 
 //FIREBASE CONFIG 
 var firebaseConfig = {
@@ -53,11 +55,11 @@ var firebaseConfig = {
   providers: [
     StatusBar,
     SplashScreen,
-  
     {provide: ErrorHandler, useClass: IonicErrorHandler}, //DELETE TO TURN OFF ERROR HANDLER
     FirebaseServiceProvider,
     ProfileProvider,
     UserProvider,
+    ExerciseServiceProvider,
 
   ]
 })

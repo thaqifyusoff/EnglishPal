@@ -10,7 +10,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
    </button>  
-    <ion-title>EXERCISES1</ion-title>
+    <ion-title>EXERCISES</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -19,8 +19,8 @@
   <ion-grid style="height: 100%">  <ion-row justify-content-center align-items-center style="height: 70%">
   
   
-    <button ion-button large block color="light" class="capitalize">Present Tense</button>
-    <button ion-button block large color="light" class="capitalize">Past Tense</button>
-    <button ion-button block large color="light" class="capitalize">Future Tense</button>
+    <button ion-button large block color="light" class="capitalize" (click)="navigateTo('presentTense')">Present Tense</button>
+    <button ion-button block large color="light" class="capitalize" (click)="navigateTo('pastTense')" >Past Tense</button>
+    <button ion-button block large color="light" class="capitalize" (click)="navigateTo('futureTense')">Future Tense</button>
   </ion-row></ion-grid>
   </ion-content>

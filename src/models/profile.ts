@@ -1,12 +1,9 @@
 export interface Profile {
     username: string;
     fullname: string;
-    phonenumber: string;
+    email: string;
     type: string;
     level: number;
     ft : number; //FIRST TIME
-
-
-
 
 }

@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>test-flashcard</ion-title>
+</ion-navbar>
+
+</ion-header>
+
+<ion-content padding class="background">
+  
+  <ion-card>
+    <ion-card-content padding *ngFor="let item of questions | async; let i = index; let last=last;" [ngClass]="(i === currentQuestion) ? '': 'hide'" >
+      <ion-item padding > 
+        <ion-label text-wrap>{{item.question}} </ion-label>
+      </ion-item>
+      <ion-list radio-group [(ngModel)]="answer.answered" padding >
+        <ion-item>
+          <ion-label>A. {{item.a}}</ion-label>
+          <ion-radio item-left value="{{item.a}}" checked></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>B. {{item.b}}</ion-label>
+          <ion-radio item-left value="{{item.b}}" checked></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>C. {{item.c}}</ion-label>
+          <ion-radio item-left value="{{item.c}}" checked></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>D. {{item.d}}</ion-label>
+          <ion-radio item-left value="{{item.d}}" checked></ion-radio>
+        </ion-item>
+          </ion-list>
+        <div *ngIf="isValid" >
+   
+
+        <ion-row>
+          <ion-col style=" text-align:left">
+            <div [ngClass]="{'color-green': mssg.status === 'Correct', 'color-red': mssg.status ==='Wrong'}">
+              {{mssg.status}}     <ion-icon name={{mssg.icon}}></ion-icon>
+
+
+            </div>
+          </ion-col>
+        </ion-row> 
+        <ion-row>
+            <ion-col style=" text-align:left">
+              Answer : {{mssg.answer}}
+            </ion-col>
+          </ion-row> 
+             </div>
+      <ion-grid style="text-align: center">
+      <ion-row>
+          <ion-col>
+                  <button ion-button  block outline color="danger" (click)="check(item.answer)">Check</button>
+          </ion-col>
+          <ion-col>
+              <button ion-button block  outline (click)="next(last)">Next</button>
+          </ion-col>      
+        </ion-row>
+ 
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

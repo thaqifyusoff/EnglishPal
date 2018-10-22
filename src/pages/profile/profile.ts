@@ -4,7 +4,7 @@ import { AngularFireAuth} from '@angular/fire/auth';
 import { Profile } from './../../models/profile';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AlertController } from 'ionic-angular';
-
+import {storage,initializeApp} from 'firebase';
 /**
  * Generated class for the ProfilePage page.
  *
@@ -22,6 +22,7 @@ export class ProfilePage {
   profile = ({ 
     level:1,
     ft:2,
+    email : localStorage.getItem("userEmail"),
    }) as Profile;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public afAuth: AngularFireAuth,private alertCtrl: AlertController, public afDatabase: AngularFireDatabase) {
@@ -40,7 +41,7 @@ export class ProfilePage {
   createProfile(){
       this.afAuth.authState.take(1).subscribe(auth => {
         this.afDatabase.object(`profile/${auth.uid}`).set(this.profile)
-        .then(() => this.navCtrl.setRoot('HomePage'))
+        .then(() => this.navCtrl.setRoot('DashboardStudentPage'))
         ;
       })
 

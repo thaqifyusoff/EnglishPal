@@ -1,0 +1,77 @@
+<ion-content padding class="background">
+  <ion-card>
+      <ion-card-header padding> 
+      <ion-item style="text-align: center" padding>
+         <ion-label class="my-label">RESULTS</ion-label>
+      </ion-item></ion-card-header>
+      <ion-card-content padding>
+        
+ 
+        
+        <ion-label class="my-score" padding [ngClass]="{ 'pass' : status === true , 'fail': status === false }">
+          {{score}} %
+        </ion-label>
+        <br><br>
+        <table align="center" border=1 width=300 color="#00FF00">
+          <tr>
+            <td>
+                <ion-item>
+                    Status 
+                </ion-item>
+            </td>
+            <td align="center">
+                <ion-item>
+                    <div *ngIf=" status===true" [ngClass]="{ 'pass' : status === true }">PASS</div>
+                    <div *ngIf=" status===false" [ngClass]="{ 'fail' : status === false }">FAIL</div>
+                </ion-item>
+            </td>
+          </tr>
+          <tr>
+              <td>
+                 <ion-item>
+                      Correctly Answered
+                  </ion-item>
+              </td>
+              <td >
+                  <ion-item>
+                    {{correctAnswer}} / 5
+                  </ion-item>
+              </td>
+            </tr>
+            <tr>
+                <td>
+                   <ion-item>
+                        Time Elapsed
+                    </ion-item>
+                </td>
+                <td >
+                    <ion-item>
+                      {{displayTimeElapsed()}}
+                    </ion-item>
+                </td>
+              </tr>
+        </table><br><br>
+        <ion-grid padding>
+            <ion-row>
+              <ion-col>
+                  <button ion-button  block (click)="restart()"><ion-icon name="refresh"></ion-icon>
+
+                  </button>
+              </ion-col>
+              <ion-col>
+                    <button ion-button  block   (click)="review()">  
+                        <ion-icon name="search"></ion-icon>
+                    </button>
+              </ion-col>
+                  <ion-col>
+                      <button ion-button  block   (click)="goHome()"><ion-icon name="home"></ion-icon>
+                      </button>
+                  </ion-col>
+                </ion-row>
+        </ion-grid>
+        
+
+      </ion-card-content>
+
+  </ion-card>
+</ion-content>

@@ -1,10 +1,15 @@
+<ion-header>
+		<ion-navbar>
+		  <ion-title>Sign up</ion-title>
+	  </ion-navbar>
+</ion-header>
 <ion-content class="background">
 
 	<br><br>
 	<ion-card>
 		<!-- title -->
 		<ion-card-header>
-			<h2 align="center">Sign Up</h2>
+			<h2 allign="center">Sign Up</h2>
 		</ion-card-header>
 		<ion-card-content>		
 			<ion-list no-line>
@@ -15,13 +20,13 @@
 				<ion-item>
 					<ion-label floating>Password</ion-label>
 					<ion-input type="password" [(ngModel)]="user.password" ></ion-input>
-        </ion-item>
+    		    </ion-item>
       
 
 				<button ion-button block outline color="primary" (click)="register(user)">Sign Up</button>
 			
-	
-    </ion-list>
+				
+  		  </ion-list>
 		</ion-card-content>
 	</ion-card>
 </ion-content>
