@@ -39,11 +39,14 @@ export class ProfilePage {
 
   createProfile(){
       this.afAuth.authState.take(1).subscribe(auth => {
-        this.afDatabase.object(`profile/${auth.uid}`).set(this.profile)
-        .then(() => this.navCtrl.setRoot('DashboardStudentPage'))
-        ;
+        this.afDatabase.object(`profile/${auth.uid}`).set(this.profile);
       })
-
+      if(this.profile.type == "Student"){
+        this.navCtrl.setRoot("DashboardStudentPage");
+      }
+      else if(this.profile.type =="Mentor"){
+        this.navCtrl.setRoot("DashboardMentorPage");
+      }
   }
 
 }
