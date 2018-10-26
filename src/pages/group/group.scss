@@ -1,3 +1,35 @@
 page-group {
+    .item {
+		
+		background: rgba(255, 255, 255, 0.5);
+		
+		.text-input, {
+			color: #fff;
+		}
 
+		input::-moz-placeholder  {
+			color: #fff!important;
+		}
+
+		input:-moz-placeholder {
+			color: #fff!important;
+		}
+
+		*::-webkit-input-placeholder  {
+			color: #fff!important;
+		}
+
+		*:-ms-input-placeholder  {
+			color: #fff!important;
+		}
+
+		*:-moz-placeholder  {
+			color: #fff!important;
+        }
+        
+	}
+
+	.button-inner{
+		justify-content:flex-start;
+	}
 }

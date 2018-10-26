@@ -24,7 +24,7 @@ export class DashboardStudentPage {
       {title:'Learning',component:'LearningPage'},
       {title:'Exercises',component:'ExercisesPage'},
       {title:'Tests',component:'TestsPage'},
-
+      {title:'Groups',component:'GroupPage'},
 
     ];
   }

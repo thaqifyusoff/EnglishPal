@@ -17,16 +17,11 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class DashboardMentorPage {
   @ViewChild(Nav) nav: Nav;
   pages: Array<{title:string,component:string,openTab?:any}>;
-  rootPage = 'HomePage';
+  rootPage = 'HomeMentorPage';
   constructor(public navCtrl: NavController, public navParams: NavParams,public afAuth: AngularFireAuth,) {
     this.pages = [
-      {title:'Profile',component:'HomePage'},
-      {title:'Progress',component:'HomePage'},
-      {title:'Forum',component:'HomePage'},
-      {title:'Group',component:'HomePage'},
-     
-
-
+      {title:'Profile',component:'HomeMentorPage'},
+      {title:'Group',component:'GroupPage'},
     ];
   }
 
@@ -35,7 +30,7 @@ export class DashboardMentorPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DashboardStudentPage');
+    console.log('ionViewDidLoad DashboardMentorPage');
   }
   
   logout(){

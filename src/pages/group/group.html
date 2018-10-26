@@ -7,12 +7,55 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>group</ion-title>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+      </button>
+    <ion-title>Groups</ion-title>
+    <ion-buttons end>
+        <button ion-button (click)="addGroup()">
+            <ion-icon name="add"></ion-icon>
+            </button>
+    </ion-buttons>
+  
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="background">
+    <ion-searchbar
+    [(ngModel)]="searchGroup"
+    [showCancelButton]="shouldShowCancel"
+    (ionInput)="search($event)"
+    (ionCancel)="onCancel($event)">
+  </ion-searchbar><br><br>
+    
+  <div *ngIf="isValid==true" padding>
+    <ion-row>
+            <ion-col>{{this.result}}  </ion-col> 
+            <div *ngIf="this.result != 'No Results'">
+            <ion-col><button small ion-button color="light" (click)="joinGroup()">Join</button></ion-col>
+            </div>
+    </ion-row>
+  </div>
+
+
+  <ion-grid>
+      <ion-row *ngFor="let g of groupList">
+          <ion-col >
+            <ion-item>
+                <button  ion-button start full color="light" (click)="viewGroup(g)" > <span class="button-inner"><b> {{g.name}}</b>  </span></button>
+            </ion-item>
+         
+          </ion-col>
+      </ion-row>
+  </ion-grid>
+            
+    
+      
+
+ 
+
+
 
 </ion-content>
