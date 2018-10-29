@@ -8,6 +8,11 @@
 
   <ion-navbar>
     <ion-title>{{this.group}}</ion-title>
+    <ion-buttons end>
+    <button ion-button (click)="leaveGroup()">
+      <ion-icon name="undo"></ion-icon>
+          </button>
+  </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -18,10 +23,10 @@
    
 
   <ion-grid>
-      <ion-row *ngFor="let g of groupList">
+      <ion-row *ngFor="let u of user | async">
           <ion-col >
             <ion-item>
-                <button  ion-button start full color="light" (click)="viewGroup(g)" > <span class="button-inner"><b> {{g.name}}</b>  </span></button>
+                <button  ion-button start full color="light" (click)="viewGroup(g)" > <span class="button-inner"><b> {{u.email}}</b>  </span></button>
             </ion-item>
          
           </ion-col>

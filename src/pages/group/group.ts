@@ -63,8 +63,9 @@ export class GroupPage {
         else {
           this.group.name = this.result;
           this.members.userId = auth.uid;
-          this.afDatabase.list(`group/${this.result}/members`).push(this.members);
-          this.afDatabase.list(`profile/${auth.uid}/group`).push(this.group);
+          this.members.email = auth.email;
+          this.afDatabase.object(`group/${this.result}/members/${auth.uid}`).set(this.members);
+          this.afDatabase.object(`profile/${auth.uid}/group/${this.group.name}`).set(this.group);
           let successfulJoin = this.alertCtrl.create({
             title: 'Successful',
             subTitle: 'Successfuly join the group',
@@ -102,6 +103,7 @@ export class GroupPage {
           handler: data => {
             this.afAuth.authState.take(1).subscribe(auth => {
               this.members.userId = auth.uid;
+              this.members.email = auth.email;
               this.group.name = data.GroupName;
               var ref = this.afDatabase.database.ref(`group/${data.GroupName}`);
               ref.once("value").then(s => {
@@ -115,8 +117,8 @@ export class GroupPage {
                   groupExist.present();
                 }
                 else {
-                  this.afDatabase.list(`group/${data.GroupName}/members`).push(this.members);
-                  this.afDatabase.list(`profile/${auth.uid}/group`).push(this.group);
+                  this.afDatabase.object(`group/${data.GroupName}/members/${auth.uid}`).set(this.members);
+                  this.afDatabase.object(`profile/${auth.uid}/group/${this.group.name}`).set(this.group);
                   let groupCreated = this.alertCtrl.create({
                     title: 'Successful',
                     subTitle: 'Successfuly created the group',
