@@ -1,13 +1,8 @@
-<!--
-  Generated template for the GroupDetailsPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{this.group}}</ion-title>
+    <ion-title><button ion-button full outline (click)=groupInfo(this.group) style="padding: 0;   border: none;     background: none;">{{this.group}}</button></ion-title>
     <ion-buttons end>
     <button ion-button (click)="leaveGroup()">
       <ion-icon name="undo"></ion-icon>
@@ -20,25 +15,29 @@
 
 
 <ion-content padding class="background">
-   
+    <ion-list>
+        <ion-item *ngFor="let chat of chats|async" no-lines>
+        
+        <div class="left-bubble">
+        <span class="msg-name">{{chat.username}}</span>
+        <p text-wrap style="color:black">{{chat.message}}</p>
+        </div>
 
-  <ion-grid>
-      <ion-row *ngFor="let u of user | async">
-          <ion-col >
-            <ion-item>
-                <button  ion-button start full color="light" (click)="viewGroup(g)" > <span class="button-inner"><b> {{u.email}}</b>  </span></button>
-            </ion-item>
-         
-          </ion-col>
-      </ion-row>
-  </ion-grid>
-            
+      </ion-item>
+    </ion-list>
+
     
       
-
- 
 
 
 
 </ion-content>
 
+<ion-footer padding>
+  
+    <ion-input type="text" #sendInput [(ngModel)]="message"  placeholder="start typing..."></ion-input>
+    <ion-buttons end>
+      <button ion-button clear type="submit" (click)=send(message) ><ion-icon name="ios-send" style="zoom:2.0;"></ion-icon></button>
+    </ion-buttons>
+
+</ion-footer>

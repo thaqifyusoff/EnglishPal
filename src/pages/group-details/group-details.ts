@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Profile } from '../../models/profile';
+import { chat } from '../../models/chat';
 
 @IonicPage()
 @Component({
@@ -10,11 +12,17 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class GroupDetailsPage {
   group: any;
-  user: any;
+  username : any;
+  chat = {} as chat;
+  chats : any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public afDatabase: AngularFireDatabase, private alertCtrl: AlertController, public afAuth: AngularFireAuth) {
     this.group = navParams.get('data');
-    console.log(this.group)
-    this.user = this.afDatabase.list(`group/${this.group}/members`).valueChanges();
+    this.chats=this.afDatabase.list(`group/${this.group}/chat`,ref=>ref.orderByChild('date')).valueChanges();
+    this.afAuth.authState.take(1).subscribe(auth => {
+      this.afDatabase.object<Profile>('profile/'+auth.uid).valueChanges().subscribe(e=>{
+        this.username = e.username;
+      });
+    });
 
   }
 
@@ -54,5 +62,18 @@ export class GroupDetailsPage {
       ]
     });
     alert.present();
+  }
+  public groupInfo(group : any){
+    this.navCtrl.push("GroupInfoPage",{
+      data:group
+    });
+  }
+  send(message :any){
+    this.chat.username=this.username;
+    this.chat.message = message;
+    this.afDatabase.list(`group/${this.group}/chat`).push(this.chat);
+
+    console.log(this.username);
+    console.log(message);
   }
 }

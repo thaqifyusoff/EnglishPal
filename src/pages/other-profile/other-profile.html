@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-navbar>
+  
+  <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+ </button>  
+  <ion-title>Profile</ion-title>
+  <ion-buttons end>
+    
+  </ion-buttons>
+  
+  </ion-navbar>
+  </ion-header>
+  <ion-content padding class="background">
+  
+  <ion-item class="myphoto" >
+    <ion-avatar>
+    <ion-img width=150 height=150 src="./../../assets/imgs/1.gif"></ion-img>
+  </ion-avatar>
+    
+  </ion-item>
+
+  <ion-grid style="	background: rgba(255, 255, 255, 0.5);" align="left">
+  
+  <ion-row>
+    <ion-col >
+        <ion-label >Username</ion-label>
+    </ion-col>
+    <ion-col col-8>
+        <ion-label text-wrap>{{profile.username}}</ion-label>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+      <ion-col>
+          <ion-label >Name</ion-label>
+      </ion-col>
+      <ion-col col-8>
+          <ion-label text-wrap><span class="capitalize" > {{profile.fullname| lowercase }}</span></ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col>
+            <ion-label >Level</ion-label>
+        </ion-col>
+        <ion-col col-8>
+            <ion-label>{{profile.level}}</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+          <ion-col>
+              <ion-label >Email</ion-label>
+          </ion-col>
+          <ion-col col-8>
+              <ion-label text-wrap>{{email}}</ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-label >Type</ion-label>
+            </ion-col>
+            <ion-col col-8>
+                <ion-label>{{profile.type}}</ion-label>
+            </ion-col>
+          </ion-row>
+   </ion-grid><div padding></div>
+        <button ion-button block color="light" (click)="viewProgress()">View Progress</button>
+   
+
+  
+  </ion-content>

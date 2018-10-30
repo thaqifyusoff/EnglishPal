@@ -1,0 +1,83 @@
+page-other-profile {
+  
+        .background {
+            width:100%;
+            height:100%;
+            background: linear-gradient(10deg,#4E5EFC,#4EE7FC);
+        }
+    
+        .scroll-content {
+            text-align: center;
+        }
+    
+        ion-card.card {
+            box-shadow: none;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+    
+        a, p,
+        ion-card-header.card-header {
+            color: #fff!important;
+        }
+        .label{
+            font-size:18px;
+          }
+    
+    
+        .item {
+            
+            background: rgba(255, 255, 255, 0.5);
+            
+            .text-input, {
+                color: #fff;
+            }
+    
+            input::-moz-placeholder  {
+                color: #fff!important;
+            }
+    
+            input:-moz-placeholder {
+                color: #fff!important;
+            }
+    
+            *::-webkit-input-placeholder  {
+                color: #fff!important;
+            }
+    
+            *:-ms-input-placeholder  {
+                color: #fff!important;
+            }
+    
+            *:-moz-placeholder  {
+                color: #fff!important;
+            }
+            
+        }
+    
+        .icon {
+            padding-right: 10px;
+        }
+        .myphoto{
+            text-align: center;
+            margin-bottom: 10px;
+            img{	
+                height: auto;
+                width: auto;
+              }
+        
+            }
+    
+        h1	{
+            color:#fff;
+            font-size: 3em;
+            font-family: 'Gill Sans','Gill Sans MT', Calibri,'Trebuchet MS', sans-serif;
+            font-weight: lighter;
+            }
+            .capitalize {
+                text-transform: capitalize;
+             }
+    
+        
+    
+}

@@ -1,0 +1,33 @@
+
+<ion-header>
+
+    <ion-navbar>
+      <ion-title>Group Members</ion-title>
+    
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  
+  <ion-content padding class="background">
+     
+  
+    <ion-grid>
+        <ion-row *ngFor="let u of user | async">
+            <ion-col >
+              <ion-item>
+                  <button  ion-button start full color="light" (click)="viewProfile(u)" > <span class="button-inner"><b> {{u.email}}</b>  </span></button>
+              </ion-item>
+           
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+              
+      
+        
+  
+  
+  
+  </ion-content>
+  

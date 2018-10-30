@@ -72,10 +72,7 @@ export class GroupPage {
             buttons: ['Ok']
           });
           successfulJoin.present();
-        }
-
-        console.log(status)
-          ;
+        }   ;
 
       });
     });

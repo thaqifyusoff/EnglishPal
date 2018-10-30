@@ -5,21 +5,13 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Observable, empty } from 'rxjs';
 import { Progress } from '../../models/progress';
- 
-
-/**
- * Generated class for the ProgressPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
-  selector: 'page-progress',
-  templateUrl: 'progress.html',
+  selector: 'page-other-progress',
+  templateUrl: 'other-progress.html',
 })
-export class ProgressPage {
+export class OtherProgressPage {
   @ViewChild('lineCanvas') lineCanvas;
   lineChart: any;
   type : any ="lvl1";
@@ -28,13 +20,15 @@ export class ProgressPage {
   s : any[] =[];
   c : any[] =[];
   count : number = 1;
+  uid : string;
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public afAuth: AngularFireAuth, public afDatabase: AngularFireDatabase) {
+  
   }
 
   ionViewDidLoad() {
-    this.afAuth.authState.take(1).subscribe(auth => {
-    this.progress=this.afDatabase.list(`progress/${auth.uid}/${this.type}`,ref=>ref.orderByChild('date'))
+    this.uid=this.navParams.get('data');
+    this.progress=this.afDatabase.list(`progress/${this.uid}/${this.type}`,ref=>ref.orderByChild('date'))
     this.progress.valueChanges().subscribe(e=>{
       this.data = e;
       for(let d of this.data){
@@ -47,15 +41,15 @@ export class ProgressPage {
 
 
 
-  });
+
   }
   getValue(lvl:any){
     this.lineChart.clear();  
     this.s =[];
     this.count =1;
     this.c = [];
-    this.afAuth.authState.take(1).subscribe(auth => {
-      this.progress=this.afDatabase.list(`progress/${auth.uid}/${lvl}`,ref=>ref.orderByChild('date'))
+      this.progress=this.afDatabase.list(`progress/${this.uid}/${lvl}`,ref=>ref.orderByChild('date'))
+  
       this.progress.valueChanges().subscribe(e=>{
         this.data = e;
         for(let d of this.data){
@@ -70,7 +64,7 @@ export class ProgressPage {
   
   
   
-    });
+
   }
 
   generateChart(data,number){
