@@ -25,6 +25,7 @@ export class HomePage {
    u: string;
   
   constructor( private afDatabase: AngularFireDatabase,public navCtrl: NavController,public afAuth:AngularFireAuth) {
+   
     this.u=localStorage.getItem('userid');
     this.pro = this.afDatabase.object<Profile>('profile/'+this.u).valueChanges();
     this.pro.subscribe(user => {
@@ -39,7 +40,7 @@ export class HomePage {
     })
   }
 
-  ionViewDidLoad() {                    }
+  ionViewDidLoad() {             }
   
  editProfile(){
    this.navCtrl.push("EditPage");

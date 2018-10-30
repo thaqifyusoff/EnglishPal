@@ -5,6 +5,7 @@ import { Profile } from './../../models/profile';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AlertController } from 'ionic-angular';
 import {storage,initializeApp} from 'firebase';
+import { Observable } from 'rxjs/Observable';
 
 
 @IonicPage()
@@ -13,11 +14,12 @@ import {storage,initializeApp} from 'firebase';
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
-
+  pro : Observable<Profile>
   profile = ({ 
     level:1,
     ft:2,
    }) as Profile;
+  u: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public afAuth: AngularFireAuth,private alertCtrl: AlertController, public afDatabase: AngularFireDatabase) {
   }
@@ -33,15 +35,10 @@ export class ProfilePage {
   }
 
   createProfile(){
-      this.afAuth.authState.take(1).subscribe(auth => {
-        this.afDatabase.object(`profile/${auth.uid}`).set(this.profile);
-      })
-      if(this.profile.type == "Student"){
-        this.navCtrl.setRoot("DashboardStudentPage");
-      }
-      else if(this.profile.type =="Mentor"){
-        this.navCtrl.setRoot("DashboardMentorPage");
-      }
+        this.u=localStorage.getItem('userid');
+        this.afDatabase.object(`profile/${this.u}`).set(this.profile);
+        this.navCtrl.setRoot("LoginPage");
+     
   }
 
 }

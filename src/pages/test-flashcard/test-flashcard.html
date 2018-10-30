@@ -14,19 +14,19 @@
         <ion-label text-wrap text-justify>{{item.question}} </ion-label>
       </ion-item>
       <ion-list class="item-borderless" radio-group [(ngModel)]="answer.answered" padding >
-        <ion-item>
+        <ion-item text-wrap text-justify>
           <ion-label>A. {{item.a}}</ion-label>
           <ion-radio item-left value="{{item.a}}" (ionSelect)="submit(last,i)"  checked></ion-radio>
         </ion-item>
-        <ion-item>
-          <ion-label>B. {{item.b}}</ion-label>
+        <ion-item text-wrap text-justify>
+          <ion-label >B. {{item.b}}</ion-label>
           <ion-radio item-left value="{{item.b}}" (ionSelect)="submit(last,i)"  checked></ion-radio>
         </ion-item>
-        <ion-item>
+        <ion-item text-wrap text-justify>
           <ion-label>C. {{item.c}}</ion-label>
           <ion-radio item-left value="{{item.c}}" (ionSelect)="submit(last,i)"  checked></ion-radio>
         </ion-item>
-        <ion-item>
+        <ion-item text-wrap text-justify>
           <ion-label>D. {{item.d}}</ion-label>
           <ion-radio item-left value="{{item.d}}" (ionSelect)="submit(last,i)"  checked></ion-radio>
         </ion-item>

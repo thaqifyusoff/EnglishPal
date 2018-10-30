@@ -35,6 +35,7 @@ export class DashboardMentorPage {
   
   logout(){
     this.afAuth.auth.signOut();
+    localStorage.clear();
     this.navCtrl.setRoot("LoginPage");
   }
 }

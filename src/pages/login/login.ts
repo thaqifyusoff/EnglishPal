@@ -30,10 +30,10 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfilePage');
+    console.log('ionViewDidLoad LoginPage');
   }
   
-  async login(user: User)
+   login(user: User)
   {
     
       const result=this.afAuth.auth.signInWithEmailAndPassword(user.email,user.password);
@@ -47,12 +47,15 @@ export class LoginPage {
               if(p.ft ==1){
                 this.navCtrl.setRoot("ProfilePage"); // IF USER FIRST TIME
               }
-              if(p.type == "Student"){
-                this.navCtrl.setRoot("DashboardStudentPage");
+              else{
+                if(p.type == "Student"){
+                  this.navCtrl.setRoot("DashboardStudentPage");
+                }
+                else if(p.type =="Mentor"){
+                  this.navCtrl.setRoot("DashboardMentorPage");
+                }
               }
-              else if(p.type =="Mentor"){
-                this.navCtrl.setRoot("DashboardMentorPage");
-              }
+         
           
            })
           

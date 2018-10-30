@@ -15,32 +15,32 @@
       </ion-item>
       <div *ngIf="item.answer === item.answered">
       <ion-list radio-group padding >
-        <ion-item [ngClass]= "{'correct': item.a === item.answer}">
+        <ion-item text-wrap text-justify [ngClass]= "{'correct': item.a === item.answer}">
           <ion-label >A. {{item.a}}</ion-label>
-        </ion-item>
-        <ion-item [ngClass]= "{'correct': item.b === item.answer}">
+        </ion-item >
+        <ion-item text-wrap text-justify [ngClass]= "{'correct': item.b === item.answer}">
           <ion-label>B. {{item.b}}</ion-label>
         </ion-item>
-        <ion-item [ngClass]= "{'correct': item.c === item.answer}">
+        <ion-item text-wrap text-justify [ngClass]= "{'correct': item.c === item.answer}">
           <ion-label>C. {{item.c}}</ion-label>
         </ion-item>
-        <ion-item [ngClass]= "{'correct': item.d === item.answer}">
+        <ion-item text-wrap text-justify [ngClass]= "{'correct': item.d === item.answer}">
           <ion-label>D. {{item.d}}</ion-label>
         </ion-item>
           </ion-list>
         </div>
         <div *ngIf="item.answer !== item.answered">
             <ion-list radio-group padding >
-              <ion-item [ngClass]= "{'wrong': item.a === item.answered, 'correct':item.a === item.answer}">
+              <ion-item text-wrap text-justify [ngClass]= "{'wrong': item.a === item.answered, 'correct':item.a === item.answer}">
                 <ion-label >A. {{item.a}}</ion-label>
               </ion-item>
-              <ion-item [ngClass]= "{'wrong': item.b === item.answered, 'correct':item.b === item.answer}">
+              <ion-item text-wrap text-justify [ngClass]= "{'wrong': item.b === item.answered, 'correct':item.b === item.answer}">
                 <ion-label>B. {{item.b}}</ion-label>
               </ion-item>
-              <ion-item [ngClass]= "{'wrong': item.c === item.answered, 'correct':item.c === item.answer}">
+              <ion-item text-wrap text-justify [ngClass]= "{'wrong': item.c === item.answered, 'correct':item.c === item.answer}">
                 <ion-label>C. {{item.c}}</ion-label>
               </ion-item>
-              <ion-item [ngClass]= "{'wrong': item.d === item.answered, 'correct':item.d === item.answer}">
+              <ion-item  text-wrap text-justify [ngClass]= "{'wrong': item.d === item.answered, 'correct':item.d === item.answer}">
                 <ion-label>D. {{item.d}}</ion-label>
               </ion-item>
                 </ion-list>

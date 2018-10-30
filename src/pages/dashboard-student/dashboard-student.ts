@@ -12,6 +12,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 @Component({
   selector: 'page-dashboard-student',
   templateUrl: 'dashboard-student.html',
+  providers: [AngularFireAuth]
 })
 export class DashboardStudentPage {
   @ViewChild(Nav) nav: Nav;
@@ -27,18 +28,21 @@ export class DashboardStudentPage {
       {title:'Groups',component:'GroupPage'},
 
     ];
+
   }
 
   openPage(page){
     this.nav.setRoot(page.component)
   }
 
-  ionViewDidLoad() {
+  async ionViewDidLoad() {
+    
     console.log('ionViewDidLoad DashboardStudentPage');
   }
   
   logout(){
     this.afAuth.auth.signOut();
+    localStorage.clear();
     this.navCtrl.setRoot("LoginPage");
   }
 
