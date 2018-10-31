@@ -42,17 +42,19 @@ export class LoginPage {
         if(auth){
            localStorage.setItem('userid',auth.uid );
            localStorage.setItem('userEmail',auth.email );
+      
            this.pro = this.afDatabase.object<Profile>('profile/'+auth.uid).valueChanges();
            this.pro.subscribe (p =>{
+           localStorage.setItem('loggedInUser',p.type)
               if(p.ft ==1){
                 this.navCtrl.setRoot("ProfilePage"); // IF USER FIRST TIME
               }
               else{
                 if(p.type == "Student"){
-                  this.navCtrl.setRoot("DashboardStudentPage");
+                  this.navCtrl.setRoot("HomePage");
                 }
                 else if(p.type =="Mentor"){
-                  this.navCtrl.setRoot("DashboardMentorPage");
+                  this.navCtrl.setRoot("HomeMentorPage");
                 }
               }
          

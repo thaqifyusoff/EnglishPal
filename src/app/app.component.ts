@@ -1,21 +1,52 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Platform, NavController, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:string = "LoginPage";
+  @ViewChild(Nav) nav: Nav;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  rootPage;
+  pages: { title: string; component: string; }[];
+  menuCtrl: any;
+  res : any;
+  content: any;
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,public afAuth: AngularFireAuth) {
+
+    this.pages = [
+      {title:'Profile',component:'HomeMentorPage'},
+      {title:'Group',component:'GroupPage'},
+    ];
+
+
+    
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
-    });
+      this.res=localStorage.getItem('loggedInUser');
+      console.log(this.res);
+          if (this.res != null){
+              this.rootPage = "HomePage";
+          }
+          else if (this.res === null) {
+            this.rootPage = "LoginPage";
+          }
+        });
+    
+   
+  }
+  openPage(page){
+    this.nav.setRoot(page.component)
+  }
+
+  logout(){
+    this.afAuth.auth.signOut();
+    localStorage.clear();
+    this.nav.setRoot("LoginPage");
   }
 }
 

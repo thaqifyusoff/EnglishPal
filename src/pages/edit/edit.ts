@@ -45,7 +45,7 @@ export class EditPage {
               this.afDatabase.object(`profile/${auth.uid}`).update({
                 fullname:this.profile.fullname,
                 username:this.profile.username   
-              }).then(()=>this.alert.present()).then(()=>this.navCtrl.pop());
+              }).then(()=>this.alert.present());
              
       });
     }
