@@ -37,7 +37,12 @@ export class ProfilePage {
   createProfile(){
         this.u=localStorage.getItem('userid');
         this.afDatabase.object(`profile/${this.u}`).set(this.profile);
-        this.navCtrl.setRoot("LoginPage");
+        if(this.profile.type =="Student"){
+          this.navCtrl.setRoot("HomePage");
+        }
+        else{
+          this.navCtrl.setRoot("HomeMentorPage");
+        }
      
   }
 
