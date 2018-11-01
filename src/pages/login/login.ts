@@ -46,6 +46,7 @@ export class LoginPage {
            this.pro = this.afDatabase.object<Profile>('profile/'+auth.uid).valueChanges();
            this.pro.subscribe (p =>{
            localStorage.setItem('loggedInUser',p.type)
+           console.log(p.type)
               if(p.ft ==1){
                 this.navCtrl.setRoot("ProfilePage"); // IF USER FIRST TIME
               }

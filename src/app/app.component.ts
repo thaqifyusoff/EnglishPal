@@ -12,6 +12,7 @@ export class MyApp {
 
   rootPage;
   pages: { title: string; component: string; }[];
+  pages1: { title: string; component: string; }[];
   menuCtrl: any;
   res : any;
   content: any;
@@ -19,9 +20,18 @@ export class MyApp {
 
     this.pages = [
       {title:'Profile',component:'HomeMentorPage'},
-      {title:'Group',component:'GroupPage'},
+      {title:'Groups',component:'GroupPage'},
+      
     ];
 
+    this.pages1 = [
+      {title:'Profile',component:'HomePage'},
+      {title:'Progress',component:'ProgressPage'},
+      {title:'Learning',component:'LearningPage'},
+      {title:'Exercises',component:'ExercisesPage'},
+      {title:'Tests',component:'TestsPage'},
+      {title:'Groups',component:'GroupPage'},
+    ];
 
     
     platform.ready().then(() => {
@@ -29,8 +39,11 @@ export class MyApp {
       splashScreen.hide();
       this.res=localStorage.getItem('loggedInUser');
       console.log(this.res);
-          if (this.res != null){
+          if (this.res == "Student"){
               this.rootPage = "HomePage";
+          }
+          else if (this.res == "Mentor"){
+            this.rootPage = "HomeMentorPage";
           }
           else if (this.res === null) {
             this.rootPage = "LoginPage";

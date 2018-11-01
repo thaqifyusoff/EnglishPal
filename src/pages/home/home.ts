@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, MenuController } from 'ionic-angular';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase} from '@angular/fire/database';
 import { Profile } from './../../models/profile';
@@ -24,8 +24,9 @@ export class HomePage {
    user= {} as User;
    u: string;
   
-  constructor( private afDatabase: AngularFireDatabase,public navCtrl: NavController,public afAuth:AngularFireAuth) {
-   
+  constructor( private afDatabase: AngularFireDatabase,public navCtrl: NavController,public afAuth:AngularFireAuth,public menuCtrl: MenuController) {
+    this.menuCtrl.enable(false, 'mentorMenu');
+    this.menuCtrl.enable(true, 'studentMenu');
     this.u=localStorage.getItem('userid');
     this.pro = this.afDatabase.object<Profile>('profile/'+this.u).valueChanges();
     this.pro.subscribe(user => {
