@@ -58,7 +58,7 @@ export class GroupPage {
             subTitle: 'You already joined the group',
             buttons: ['Dismiss']
           });
-          alreadyJoin.present();
+          alreadyJoin.present().then(()=>  this.navCtrl.setRoot("GroupPage") );;
         }
         else {
           this.group.name = this.result;
@@ -71,7 +71,7 @@ export class GroupPage {
             subTitle: 'Successfuly join the group',
             buttons: ['Ok']
           });
-          successfulJoin.present();
+          successfulJoin.present().then(()=>  this.navCtrl.setRoot("GroupPage") );;
         }   ;
 
       });
@@ -121,7 +121,8 @@ export class GroupPage {
                     subTitle: 'Successfuly created the group',
                     buttons: ['Ok']
                   });
-                  groupCreated.present();
+                  groupCreated.present().then(()=>  this.navCtrl.setRoot("GroupPage") );
+                
                 }
               })
 
