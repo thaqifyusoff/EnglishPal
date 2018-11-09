@@ -4,7 +4,7 @@ export interface Question {
     a: string;
     b: string;
     c: string;
-    d: string; //FIRST TIME
+    d: string; 
 
 
 }
