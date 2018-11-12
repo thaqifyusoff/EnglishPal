@@ -7,14 +7,8 @@ import { User } from '../../models/user';
 import { AlertController } from 'ionic-angular';
 import { AngularFireDatabase } from '@angular/fire/database';
 import {Profile} from './../../models/profile';
+import { FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
 
-
-/**
- * Generated class for the RegisterPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -23,7 +17,7 @@ import {Profile} from './../../models/profile';
   providers: [AngularFireAuth] //PROVIDER ANGULARFIRE AUTH
 })
 export class RegisterPage {
-  
+  group: FormGroup;
   profile = ({ 
     level:1,
     ft:1,
@@ -32,10 +26,15 @@ export class RegisterPage {
   user= {} as User;
   constructor(public navCtrl: NavController, public navParams: NavParams, public firebaseService:FirebaseServiceProvider 
     , public afDatabase: AngularFireDatabase,public afAuth:AngularFireAuth,private alertCtrl: AlertController) {
+      this.group= new FormGroup({
+        email: new FormControl('',[Validators.required,Validators.email]),
+        password : new FormControl('',[Validators.required])
+      });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterPage');
+   
   }
 
 
@@ -60,6 +59,13 @@ export class RegisterPage {
     }
     catch(e){
       console.error(e);
+      let alert = this.alertCtrl.create({
+        title: 'Register unsucessful',
+        subTitle: e.message,
+        buttons: ['Dismiss']
+      });
+      alert.present();
+
     }
   }
 

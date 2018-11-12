@@ -15,19 +15,33 @@
 
 <ion-content padding class="background">
    <br><br>
+   <form novalidate [formGroup]="group" (ngSubmit)="updateProfile()">
    <ion-list no-line>
-       
        <ion-item>
            <ion-label floating>Username</ion-label>
-           <ion-input type="text" [(ngModel)]="profile.username" value="{{profile.username}}" ></ion-input>
+           <ion-input type="text" [(ngModel)]="profile.username" value="{{profile.username}}" formControlName="username"></ion-input>
        </ion-item>
+       <ion-item no-lines *ngIf="group.get('username').hasError('required')  && group.get('username').touched">         
+          <div class="error" *ngIf="group.get('username').hasError('required') && group.get('username').touched">
+           Username is required
+          </div>
+      </ion-item>
      <ion-item>
        <ion-label floating>Full Name</ion-label>
-       <ion-input type="text" [(ngModel)]="profile.fullname" value="{{profile.fullname}}" ></ion-input>
+       <ion-input type="text" [(ngModel)]="profile.fullname" value="{{profile.fullname}}" formControlName="fullname"></ion-input>
      </ion-item>
+     <ion-item   *ngIf="(group.get('fullname').hasError('required') || group.get('fullname').hasError('minlength') ) && group.get('fullname').touched">         
+        <div class="error" *ngIf="group.get('fullname').hasError('required') && group.get('fullname').touched">
+          Fullname is required
+        </div>
+        <div text-wrap class="error" *ngIf="group.get('fullname').hasError('minlength') && group.get('fullname').touched">
+          Your fullname is too short , it must be at least 10 characters 
+        </div>
+    </ion-item>
    
    </ion-list>
+  
    <br><br>
-   <button ion-button block  color="light" (click)="updateProfile()">Update</button>
- 
+   <button ion-button block  color="light"  [disabled]="group.invalid">Update</button>
+  </form>
  </ion-content>

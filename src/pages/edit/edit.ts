@@ -4,6 +4,8 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { Profile } from '../../models/profile';
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
+
 
 /**
  * Generated class for the EditPage page.
@@ -18,6 +20,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
   templateUrl: 'edit.html',
 })
 export class EditPage {
+  group: FormGroup;
   pro : Observable<Profile>;
   u: string;
   profile ={} as Profile;
@@ -34,6 +37,10 @@ export class EditPage {
       this.profile.username = user.username;
       this.profile.fullname = user.fullname;
   } );
+  this.group= new FormGroup({
+    username: new FormControl('',[Validators.required]),
+    fullname : new FormControl('',[Validators.required,Validators.minLength(10)])
+  });
   }
 
   ionViewDidLoad() {

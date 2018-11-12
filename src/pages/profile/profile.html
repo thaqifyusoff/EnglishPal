@@ -5,32 +5,47 @@
 </ion-header>
 
 <ion-content padding class="background">
+<form novalidate [formGroup]="group" (ngSubmit)="createProfile(profile)">
  <h1>User Information</h1> <br><br>
+
   <ion-list no-line>
-      
       <ion-item>
           <ion-label floating>Username</ion-label>
-          <ion-input type="text" [(ngModel)]="profile.username" ></ion-input>
+          <ion-input type="text" [(ngModel)]="profile.username"  formControlName="username" ></ion-input>
       </ion-item>
+      <ion-item no-lines *ngIf="group.get('username').hasError('required')  && group.get('username').touched">         
+            <div class="error" *ngIf="group.get('username').hasError('required') && group.get('username').touched">
+             Username is required
+            </div>
+        </ion-item>
     <ion-item>
       <ion-label floating>Full Name</ion-label>
-      <ion-input type="text" [(ngModel)]="profile.fullname" ></ion-input>
+      <ion-input type="text" [(ngModel)]="profile.fullname" formControlName="fullname" ></ion-input>
     </ion-item>
+	<ion-item   *ngIf="(group.get('fullname').hasError('required') || group.get('fullname').hasError('minlength') ) && group.get('fullname').touched">         
+            <div class="error" *ngIf="group.get('fullname').hasError('required') && group.get('fullname').touched">
+              Fullname is required
+            </div>
+            <div text-wrap class="error" *ngIf="group.get('fullname').hasError('minlength') && group.get('fullname').touched">
+              Your fullname is too short , it must be at least 10 characters 
+            </div>
+        </ion-item>
   <br><br>
   <ion-label >Type</ion-label>
 
-  <ion-list radio-group [(ngModel)]="profile.type">
+  <ion-list radio-group [(ngModel)]="profile.type" formControlName="type">
   <ion-item>
       <ion-label >Student</ion-label>
       <ion-radio value="Student" checked></ion-radio>
   </ion-item>
   <ion-item>
       <ion-label >Mentor</ion-label>
-      <ion-radio value="Mentor" checked></ion-radio>
+      <ion-radio value="Mentor" ></ion-radio>
   </ion-item>
   </ion-list>
   </ion-list>
+  
 
-  <button ion-button block outline color="light" (click)="createProfile()">Create</button>
-
+  <button ion-button block outline color="light" [disabled]="group.invalid" >Create</button>
+</form>
 </ion-content>

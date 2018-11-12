@@ -33,10 +33,10 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
   
-   login(user: User)
+   async login(user: User)
   {
-    
-      const result=this.afAuth.auth.signInWithEmailAndPassword(user.email,user.password);
+    try{
+      var result=this.afAuth.auth.signInWithEmailAndPassword(user.email,user.password);
       if(result){
       this.afAuth.authState.take(1).subscribe(auth => {
         if(auth){
@@ -75,6 +75,11 @@ export class LoginPage {
         }
       })
       }
+    }
+    catch(e){
+      console.error(e);
+    }
+
      
    
    

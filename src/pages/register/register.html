@@ -14,21 +14,35 @@
 			<h2 allign="center">Sign Up</h2>
 		</ion-card-header>
 		<ion-card-content>		
+			<form novalidate [formGroup]="group" (ngSubmit)="register(user)">
 			<ion-list no-line>
 				<ion-item>
 					<ion-label floating>Email</ion-label>
-					<ion-input type="text" [(ngModel)]="user.email" ></ion-input>
+					<ion-input type="text" [(ngModel)]="user.email" formControlName="email"></ion-input>
 				</ion-item>
+				<ion-item no-lines *ngIf="(group.get('email').hasError('required') || group.get('email').hasError('email') ) && group.get('email').touched">         
+						<div class="error" *ngIf="group.get('email').hasError('required') && group.get('email').touched">
+						  Email is required
+						</div>
+						<div class="error" *ngIf="group.get('email').hasError('email') && group.get('email').touched">
+						  Please enter valid email
+						</div>
+					</ion-item>
 				<ion-item>
 					<ion-label floating>Password</ion-label>
-					<ion-input type="password" [(ngModel)]="user.password" ></ion-input>
-    		    </ion-item>
-      
-
-				<button ion-button block outline color="primary" (click)="register(user)">Sign Up</button>
-			
-				
-  		  </ion-list>
+					<ion-input type="password" [(ngModel)]="user.password" formControlName="password"></ion-input>
+				</ion-item>
+				<ion-item no-lines *ngIf="(group.get('password').hasError('required') || group.get('password').hasError('minlength') ) && group.get('password').touched">         
+						<div class="error" *ngIf="group.get('password').hasError('required') && group.get('password').touched">
+						  Password is required
+						</div>
+						<div class="error" *ngIf="group.get('password').hasError('minlength') && group.get('password').touched">
+						  Password must be at least 6 characters long.
+						</div>
+					  </ion-item>
+				<button ion-button block outline color="primary" [disabled]="group.invalid" >Sign Up</button>
+			</ion-list>
+		</form>
 		</ion-card-content>
 	</ion-card>
 </ion-content>

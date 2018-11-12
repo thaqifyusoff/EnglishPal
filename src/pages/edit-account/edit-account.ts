@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { User } from '../../models/user';
+import { FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
 
 /**
  * Generated class for the EditAccountPage page.
@@ -17,6 +18,7 @@ import { User } from '../../models/user';
   templateUrl: 'edit-account.html',
 })
 export class EditAccountPage {
+  group: FormGroup;
   user= {} as User;
   alert:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,public afAuth:AngularFireAuth , public afDatabase: AngularFireDatabase,private alertCtrl: AlertController) {
@@ -27,7 +29,12 @@ export class EditAccountPage {
       
     this.afAuth.authState.take(1).subscribe(auth => {
             this.user.email=auth.email;        
-    })
+    });
+    this.group= new FormGroup({
+      email: new FormControl('',[Validators.required]),
+      password : new FormControl('',[Validators.required,Validators.minLength(6)]),
+
+    });
   }
 
   ionViewDidLoad() {

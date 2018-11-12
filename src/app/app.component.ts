@@ -10,7 +10,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage;
+  rootPage ;
   pages: { title: string; component: string; }[];
   pages1: { title: string; component: string; }[];
   menuCtrl: any;
@@ -46,6 +46,9 @@ export class MyApp {
             this.rootPage = "HomeMentorPage";
           }
           else if (this.res === null) {
+            this.rootPage = "LoginPage";
+          }
+          else{
             this.rootPage = "LoginPage";
           }
         });

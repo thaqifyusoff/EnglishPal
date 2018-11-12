@@ -6,6 +6,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { AlertController } from 'ionic-angular';
 import {storage,initializeApp} from 'firebase';
 import { Observable } from 'rxjs/Observable';
+import { FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
 
 
 @IonicPage()
@@ -14,6 +15,7 @@ import { Observable } from 'rxjs/Observable';
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
+  group: FormGroup;
   pro : Observable<Profile>
   profile = ({ 
     level:1,
@@ -22,6 +24,11 @@ export class ProfilePage {
   u: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public afAuth: AngularFireAuth,private alertCtrl: AlertController, public afDatabase: AngularFireDatabase) {
+    this.group= new FormGroup({
+      username: new FormControl('',[Validators.required]),
+      fullname : new FormControl('',[Validators.required,Validators.minLength(10)]),
+      type : new FormControl('Student')
+    });
   }
 
   ionViewDidLoad() {
