@@ -4,6 +4,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Profile } from '../../models/profile';
 import { chat } from '../../models/chat';
+import { FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
 
 @IonicPage()
 @Component({
@@ -11,6 +12,8 @@ import { chat } from '../../models/chat';
   templateUrl: 'group-details.html',
 })
 export class GroupDetailsPage {
+  groups: FormGroup;
+
   group: any;
   username : any;
   chat = {} as chat;
@@ -23,7 +26,10 @@ export class GroupDetailsPage {
         this.username = e.username;
       });
     });
-
+    this.groups= new FormGroup({
+      message: new FormControl('',[Validators.required]),
+    
+    });
   }
 
   ionViewDidLoad() {

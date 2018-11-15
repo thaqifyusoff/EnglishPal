@@ -13,7 +13,7 @@
           <ion-label floating>Username</ion-label>
           <ion-input type="text" [(ngModel)]="profile.username"  formControlName="username" ></ion-input>
       </ion-item>
-      <ion-item no-lines *ngIf="group.get('username').hasError('required')  && group.get('username').touched">         
+        <ion-item no-lines *ngIf="group.get('username').hasError('required')  && group.get('username').touched">         
             <div class="error" *ngIf="group.get('username').hasError('required') && group.get('username').touched">
              Username is required
             </div>

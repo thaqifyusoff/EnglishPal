@@ -34,10 +34,11 @@
 </ion-content>
 
 <ion-footer padding>
-  
-    <ion-input type="text" #sendInput [(ngModel)]="message"  placeholder="start typing..."></ion-input>
+  <form novalidate [formGroup]="groups" (ngSubmit)="send(message)">
+    <ion-input type="text" #sendInput [(ngModel)]="message"  placeholder="start typing..." formControlName="message"></ion-input>
     <ion-buttons end>
-      <button ion-button clear type="submit" (click)=send(message) ><ion-icon name="ios-send" style="zoom:2.0;"></ion-icon></button>
+      <button ion-button clear type="submit" [disabled]="groups.invalid"><ion-icon name="ios-send" style="zoom:2.0;" ></ion-icon></button>
     </ion-buttons>
+  </form>
 
 </ion-footer>

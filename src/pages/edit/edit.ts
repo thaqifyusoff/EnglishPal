@@ -39,7 +39,7 @@ export class EditPage {
   } );
   this.group= new FormGroup({
     username: new FormControl('',[Validators.required]),
-    fullname : new FormControl('',[Validators.required,Validators.minLength(10)])
+    fullname : new FormControl('',[Validators.required,Validators.minLength(10)]),
   });
   }
 
