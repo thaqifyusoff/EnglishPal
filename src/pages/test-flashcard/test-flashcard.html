@@ -1,37 +1,39 @@
 
 
-<ion-content padding class="background">
+<ion-content padding class="card" *ngFor="let item of questions | async; let i = index; let last=last;" [ngClass]="(i === currentQuestion) ? '': 'hide'">
   
-  <ion-card>
-    <ion-card-content padding *ngFor="let item of questions | async; let i = index; let last=last;" [ngClass]="(i === currentQuestion) ? '': 'hide'" >
+ 
       <span>Time Elapsed: {{displayTimeElapsed()}}</span> <!--DISPLAY TIME-->
       <div class="progress-outer">
           <div class="progress-inner" [style.width]="(i+1)*10 + '%'">  <!-- DISPLAY PROGRESS -->
       </div>
       </div>
       <ion-label>Question {{i+1}}</ion-label>
-      <ion-item padding > 
-        <ion-label text-wrap text-justify>{{item.question}} </ion-label>
-      </ion-item>
-      <ion-list class="item-borderless" radio-group [(ngModel)]="answer.answered" padding >
+      <div class="question" >
+        <ion-item padding > 
+          <ion-label text-wrap text-justify><pre text-justify>{{item.question}} </pre></ion-label>
+        </ion-item>
+      </div>
+     
+      <form novalidate [formGroup]="group" >
+      <ion-list class="item-borderless" radio-group [(ngModel)]="answer.answered" formControlName="option" padding >
         <ion-item text-wrap text-justify>
           <ion-label>A. {{item.a}}</ion-label>
-          <ion-radio item-left value="{{item.a}}" (ionSelect)="submit(last,i)"  checked></ion-radio>
+          <ion-radio item-left value="{{item.a}}" (ionSelect)="submit(last,i)"  ></ion-radio>
         </ion-item>
         <ion-item text-wrap text-justify>
           <ion-label >B. {{item.b}}</ion-label>
-          <ion-radio item-left value="{{item.b}}" (ionSelect)="submit(last,i)"  checked></ion-radio>
+          <ion-radio item-left value="{{item.b}}" (ionSelect)="submit(last,i)"  ></ion-radio>
         </ion-item>
         <ion-item text-wrap text-justify>
           <ion-label>C. {{item.c}}</ion-label>
-          <ion-radio item-left value="{{item.c}}" (ionSelect)="submit(last,i)"  checked></ion-radio>
+          <ion-radio item-left value="{{item.c}}" (ionSelect)="submit(last,i)"  ></ion-radio>
         </ion-item>
         <ion-item text-wrap text-justify>
           <ion-label>D. {{item.d}}</ion-label>
-          <ion-radio item-left value="{{item.d}}" (ionSelect)="submit(last,i)"  checked></ion-radio>
+          <ion-radio item-left value="{{item.d}}" (ionSelect)="submit(last,i)"  ></ion-radio>
         </ion-item>
       </ion-list>
-     
-    </ion-card-content>
-  </ion-card>
+    </form>
+
 </ion-content>

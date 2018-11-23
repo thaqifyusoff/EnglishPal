@@ -35,7 +35,7 @@ export class ReviewPage {
     this.isValid= false;
     console.log(index);
     if(index==0){
-      this.currentQuestion = 4;
+      this.currentQuestion = 9;
     }
     else{
       --this.currentQuestion;

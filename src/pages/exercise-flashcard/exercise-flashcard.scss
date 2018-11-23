@@ -9,7 +9,12 @@ page-exercise-flashcard {
  
   }
 
-  
+  div.question{
+    height: 120px;
+  }
+  div.answer{
+    height: 60px;
+  }
   .label{
     font-size:20px;
   }

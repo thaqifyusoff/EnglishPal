@@ -9,9 +9,11 @@
   
   <ion-card *ngFor="let item of questions | async; let i = index; let last=last;" [ngClass]="(i === currentQuestion) ? '': 'hide'" >
     <ion-card-content padding  >
+      <div class="question">
       <ion-item padding > 
         <ion-label text-wrap text-justify>{{item.question}} </ion-label>
       </ion-item>
+    </div>
       <ion-list radio-group [(ngModel)]="answer.answered" padding >
         <ion-item>
           <ion-label  text-wrap text-justify>A. {{item.a}}</ion-label>
@@ -30,7 +32,8 @@
           <ion-radio item-left value="{{item.d}}" checked></ion-radio>
         </ion-item>
           </ion-list>
-        <div *ngIf="isValid" >
+          <div class="answer">
+           <div *ngIf="isValid">
    
 
         <ion-row>
@@ -48,6 +51,7 @@
             </ion-col>
           </ion-row> 
              </div>
+            </div>
       <ion-grid style="text-align: center">
       <ion-row>
           <ion-col>

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Answer } from './../../models/answer';
 import { ChangeDetectorRef } from '@angular/core';
 import {AnswerMssg} from './../../models/answermssg';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @IonicPage()
 @Component({
@@ -24,8 +25,12 @@ export class TestFlashcardPage {
   seconds : number =0 ; //total time taken
   timer; //time take for participant
   qnProgress: number=0 ;
-
+  group : FormGroup;
   constructor(public navCtrl: NavController, public navParams: NavParams, public afd: AngularFireDatabase,private cdRef:ChangeDetectorRef) {
+    this.group= new FormGroup({
+      option: new FormControl(),
+ 
+    });
     this.type = localStorage.getItem('level');
     this.questions = this.afd.list('tests/'+this.type).valueChanges();
     //ADD ON 
@@ -53,6 +58,7 @@ export class TestFlashcardPage {
     this.isValid= false;
     this.qns[this.qnProgress].answered = this.answer.answered; //create new attribute call answered and store it
     this.qnProgress++;
+    this.group.reset();
     if(last==true){
       this.currentQuestion = 0;
       localStorage.setItem('answered',JSON.stringify(this.qns));

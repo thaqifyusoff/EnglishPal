@@ -48,7 +48,7 @@ export class ResultPage {
     else if(this.type =="lvl4"){
       this.lvl =4;  
     }
-    this.score = (this.correctAnswer/5)*100;
+    this.score = (this.correctAnswer/10)*100;
     this.progress.score = this.score;
     this.progress.timetaken = this.seconds;
     this.afAuth.authState.take(1).subscribe(auth => {

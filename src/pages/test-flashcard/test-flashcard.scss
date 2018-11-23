@@ -7,7 +7,13 @@ page-test-flashcard {
      
       }
     
-      
+      div.question{
+        height: 360px;
+      }
+      pre{
+        text-align: left;
+        white-space: pre-wrap;
+    }
       .label{
         font-size:20px;
       }

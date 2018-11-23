@@ -51,7 +51,7 @@ export class ExerciseFlashcardPage {
     else{
       this.mssg.status = "Wrong"
       this.mssg.answer = ans ;
-      this.mssg.icon = "close-circle-outline";
+      this.mssg.icon = "close";
     }
   }
 
