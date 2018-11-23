@@ -43,14 +43,16 @@ export class ProgressPage {
        this.count++;
       }
       this.generateChart(this.s,this.c);
+      console.log(this.lineChart);
     })
+    console.log("HELLO");
 
 
 
   });
   }
   getValue(lvl:any){
-    this.lineChart.clear();  
+    this.lineChart.destroy();  
     this.s =[];
     this.count =1;
     this.c = [];
@@ -63,13 +65,8 @@ export class ProgressPage {
           this.c.push(this.count);
           this.count++;
         }
-      this.lineChart.data.datasets.data = this.s;
-      this.lineChart.data.labels = this.c;
-      this.lineChart.update();
+      this.generateChart(this.s,this.c);
       })
-  
-  
-  
     });
   }
 
@@ -120,7 +117,7 @@ export class ProgressPage {
           xAxes: [{
             scaleLabel:{
               display : true,
-              labelString: "Attemps" 
+              labelString: "Attempts" 
             } ,
              ticks:{
                display : false,

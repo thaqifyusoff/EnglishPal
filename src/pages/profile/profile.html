@@ -36,15 +36,21 @@
   <ion-list radio-group [(ngModel)]="profile.type" formControlName="type">
   <ion-item>
       <ion-label >Student</ion-label>
-      <ion-radio value="Student" checked></ion-radio>
+      <ion-radio value="Student"></ion-radio>
   </ion-item>
   <ion-item>
       <ion-label >Mentor</ion-label>
       <ion-radio value="Mentor" ></ion-radio>
   </ion-item>
-  </ion-list>
-  </ion-list>
   
+  </ion-list>
+  <ion-item   *ngIf="group.get('type').hasError('required')">         
+    <div class="error" *ngIf="group.get('type').hasError('required')">
+      Please choose one
+    </div>
+</ion-item>
+  </ion-list>
+
 
   <button ion-button block outline color="light" [disabled]="group.invalid" >Create</button>
 </form>

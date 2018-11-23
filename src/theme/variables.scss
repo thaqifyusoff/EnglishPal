@@ -116,7 +116,13 @@ ion-card-header.card-header {
   color: #fff;
 }
 
+ion-content.content-md[padding] .scroll-content {
+	padding-bottom: 16px !important;
+}
 
+ion-content.content-md:not([padding]) .scroll-content {
+	padding-bottom: 0 !important;
+}
 .list > .item-block:first-child {
   border: medium none;
 }
