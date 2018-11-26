@@ -78,8 +78,6 @@ export class GroupDetailsPage {
     this.chat.username=this.username;
     this.chat.message = message;
     this.afDatabase.list(`group/${this.group}/chat`).push(this.chat);
-
-    console.log(this.username);
-    console.log(message);
+    this.groups.reset();
   }
 }
