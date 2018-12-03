@@ -97,10 +97,7 @@ export class ProgressPage {
                   pointHitRadius: 0,
                   data: data,
                   spanGaps: false,
-              }
-          ]
-          
-      },
+              } ]       },
       options: {
         layout: {
           padding: {
@@ -108,24 +105,21 @@ export class ProgressPage {
               right: 50,
               top: 0,
               bottom: 0
-          }
-      },
+          }   },
         legend: {
-            display: false
-        },
+            display: false   },
         scales:{
           xAxes: [{
             scaleLabel:{
               display : true,
               labelString: "Attempts" 
-            } ,
+  } ,
              ticks:{
                display : false,
              } , 
              gridLines: {
               color: "rgba(0, 0, 0, 0)",
-            }//this will remove all the x-axis grid lines
-           
+            }//this will remove all the x-axis grid lines  
           }],
           yAxes: [{
             scaleLabel:{
@@ -137,8 +131,6 @@ export class ProgressPage {
            }
           }]}
     }
-      
-
   });
   }
 }
